@@ -1,0 +1,22 @@
+{
+  "name": "detection-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaduksuh/detection-server.git"
+  },
+  "author": "Jaduk Suh",
+  "license": "ISC",
+  "engines": {
+    "node": "14.17.1"
+  },
+  "bugs": {
+    "url": "https://github.com/jaduksuh/detection-server/issues"
+  },
+  "homepage": "https://github.com/jaduksuh/detection-server#readme"
+}
