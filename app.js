@@ -1,9 +1,12 @@
 const http = require('http');
+const port = process.env.PORT || 3000
+
 const server = http.createServer((req, res) => {
-  res.end('Hello World');
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello World</h1>');
 });
 
-server.listen(4001, () => {
-  const { address, port } = server.address();
-  console.log(`Server is listening on: http://${address}:${port}`);
+server.listen(port,() => {
+  console.log(`Server running at port `+port);
 });
