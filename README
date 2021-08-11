@@ -1,0 +1,18 @@
+Program Author: Jaduk Suh
+Program owned by Plusidentity
+
+1. ~/websites.json
+websites.json includes key-value pairs of [website_name: start_url].
+    - website_name: name of website
+    - start_url: the url where the detection process begins
+
+2. ~/config_files/*******.js
+config files which contain login navigation info
+
+3. ~/index.js
+The program will execute <node index.js>
+index.js will do the following tasks:
+    - Scan through websites.json
+    - For each website, open up the start url
+    - Begin login navigation process specified in the corresponding json file of the website
+    - If loginSuccess does not appear after 10 seconds, send email to staff

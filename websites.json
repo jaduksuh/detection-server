@@ -1,16 +1,5 @@
 {
     "apollo": "https://app.apollo.io/#/login",
-    "atlassian": "https://id.atlassian.com/login",
-    "auth0": "https://auth0.auth0.com/u/login/identifier?state=hKFo2SB4ZUd6MDJIZEZpdjRuSUc3RnEzSnJRVmhYY2Y1UFN4R6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIHJoanY2MG45ZXN3QWtycW1xaHhaMldXLW1hS183U3Nao2NpZNkgYkxSOVQ1YXI2bkZ0RE80ekVyR1hkb3FNQ000aU5aU1Y",
-    "bitly": "https://bitly.com/a/sign_in",
-    "cloudflare": "https://dash.cloudflare.com/login",
-    "coinbase": "https://www.coinbase.com/signin",
-    "costco": "https://www.costco.com/LogonForm",
-    "coursera": "https://www.coursera.org/?authMode=login",
-    "crunchbase": "https://www.crunchbase.com/login",
-    "deel": "https://app.letsdeel.com/login",
-    "discord": "https://discord.com/login",
-    "dropbox": "https://www.dropbox.com/login",
     "fandom": "https://www.fandom.com/signin",
     "leetcode": "https://leetcode.com/accounts/login/"
 }
