@@ -1,18 +1,37 @@
 Program Author: Jaduk Suh
 Program owned by Plusidentity
 
-1. ~/websites.json
-websites.json includes key-value pairs of [website_name: start_url].
-    - website_name: name of website
-    - start_url: the url where the detection process begins
+Problems:
+1. Need to either unify all of the test account info for all websites, 
+or store the test account info somewhere
 
-2. ~/config_files/*******.js
-config files which contain login navigation info
+2. Cannot use login navigation of some config files 
+(Ex: login --> button --> password --> button, but configured as login --> password --> button)
 
-3. ~/index.js
-The program will execute <node index.js>
-index.js will do the following tasks:
-    - Scan through websites.json
-    - For each website, open up the start url
-    - Begin login navigation process specified in the corresponding json file of the website
-    - If loginSuccess does not appear after 10 seconds, send email to staff
+3. Blocked by CAPTCHA
+
+Solutions:
+- Since the login navigaition isn't viable, instead of going through the entire login process,
+we should just detect whether the CSS elements are in place. If the login process has been changed,
+then it is highly likely that the CSS elements have changed as well, so this method would be able to effectively detect webpage changes.
+
+
+- Someday, we would also need to store the info about signup processes as well.
+- That means someday, we will have to add the url info of the signup page in websites.json as well.
+- All things considered, it dawns to me that a complete revision of the system is neccessary.
+
+REVISION:
+- websites.json: key:value pairs of website name: login info.
+  - Login info is an object including:
+    - url: start url
+    - array of elements to look for: ["email", "username", "password", "button"]
+
+- In the directory config_files, we store the js files of each website.
+- Combining the info on the config files and websites.json, we look for the specified DOM elements.
+
+- Expected problems: 
+- While this method should be able to effectively detect a majority of changes made onto webpages,
+there still may be some extremely unlikely cases where the changes made on the webpage is so small that 
+it bypasses the detection method above. This should be solved by receiving bug reports from users.
+
+

@@ -1,5 +1,14 @@
 {
-    "apollo": "https://app.apollo.io/#/login",
-    "fandom": "https://www.fandom.com/signin",
-    "leetcode": "https://leetcode.com/accounts/login/"
+    "apollo": {
+        "url": "https://app.apollo.io/#/login",
+        "elements": ["email", "password", "button"]
+    },
+    "fandom": {
+        "url": "https://www.fandom.com/signin",
+        "elements": ["username", "password", "button"]
+    },
+    "leetcode": {
+        "url": "https://leetcode.com/accounts/login/",
+        "elements": ["username", "password", "button"]
+    }
 }

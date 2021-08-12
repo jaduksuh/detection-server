@@ -328,7 +328,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "#o3-input" // should be the same as in loginConfig
+              "#o3-input11" // should be the same as in loginConfig
             ]
           },
           "note": "Email input field for login"
