@@ -1,0 +1,30 @@
+<Issues>
+Type 3: Websites that only work with elementClickedOn for login entrypoitns
+
+quizlet: The target DOM elements appear only when clicked on 'login' button on main page. --> Failed because the bot was constantly redirected to the Korean website.
+
+twitch: The target DOM elements appear only when clicked on 'login' button on main page. --> Failed because the bot was constantly redirected to the Korean website.
+
+
+Type 4: Other extra issues
+
+<ip block>
+
+angellist: ip blocks if too many login requests are fired in a rather short period of time
+
+doordash: Like angellist, the website apparently seems to ip block bots.
+
+ebay: Like above, ebay seems to block bots as well
+
+
+
+
+
+
+<Loading problems>
+
+costco: For some reason, takes too long to load page no matter what
+
+<captcha>
+
+zipcar: Requires captcha when accessing login page

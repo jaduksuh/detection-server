@@ -1,9 +1,14 @@
 module.exports = {
-  "serviceName": "cloudflare",
-  "officialName": "Cloudflare",
+  "serviceName": "bbc",
+  "officialName": "BBC",
   "accountData": [
     "_emailAddress",
+    "_birthday_year_fourDigits",
+    "_birthday_month_number_noZero",
+    "_birthday_day",
+    "_residence_country_formal",
     "password"
+    //custom questions: are you 16 or over?
   ],
   
   "passwordRequirement": {
@@ -15,34 +20,66 @@ module.exports = {
       "number"
       
     ],
-    "mustNotInclude": [
-
-    ]
+    "mustNotInclude": []
   },
-  
+
   "entrypointConfig": {
-    "rootDomain": "cloudflare.com",
-    "subDomain": "ALL.cloudflare.com",
+    "rootDomain": "bbc.com",
+    "subDomain": "ALL.bbc.com",
     "entrypoints": [
       
+      //recovery entrypoints - this is above login because the links overlap (login link is shorter)
+      {
+        "type": "recovery",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#signin-page > div.page__wrapper > div.page__grid-wrapper > div.page__content-wrapper > div.page__content.page__content--flex > form > p > a"
+          ]
+        },
+        "note": "Need help signing in button"
+      },
+      {
+        "type": "recovery",
+        "identifierType": "urlStartWith",
+        "identifier": {
+          "startUrl": "https://account.bbc.com/signin/help"
+        },
+        "note": "Redirects to this page for password recovery"
+      }, 
+
       //login entrypoints
       {
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/login']"
+            "#idcta-link"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "Clicked login from home page"
       },
       {
         "type": "login",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/login"
+          "startUrl": "https://account.bbc.com/signin"
         },
         "note": "Redirects to this page for login"
+      },
+
+      //signup + login success entrypoints
+       {
+        "type": "signupSuccess",
+        "identifierType": "urlIncludes&elementPresent",
+        "identifier": {
+          "includedString": "https://account.bbc.com/register/thanks",
+          "elementSelectors": [
+            "#submit-button", //continue button
+            "#container > div > div.page__wrapper > div.page__grid-wrapper > div.page__content-wrapper > div > h1", //success message
+          ]
+        },
+        "note": "_______"
       },
 
       //signup entrypoints
@@ -51,66 +88,33 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/sign-up']"
+            "#signin-page > div.page__wrapper > div.page__grid-wrapper > div.page__content-wrapper > div.page__content.page__content--secondary > a"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "'Register now' button'"
       },
       {
         "type": "signup",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/sign-up"
+          "startUrl": "https://account.bbc.com/register"
         },
-        "note": "Redirects to this page for sign up"
-      },
-
-      //recovery entrypoints
-      {
-        "type": "recovery",
-        "identifierType": "elementClickedOn",
-        "identifier": {
-          "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/forgot-password']"
-          ]
-        },
-        "note": "Forgot password button"
-      },
-      {
-        "type": "recovery",
-        "identifierType": "urlStartWith",
-        "identifier": {
-          "startUrl": "https://dash.cloudflare.com/forgot-password"
-        },
-        "note": "Redirects to this page for password recovery"
-      },
-
-      //signup + login success entrypoints
-      {
-        "type": "signupSuccess",
-        "identifierType": "urlIncludes&elementPresent",
-        "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
-        },
-        "note": "Asks for more cusstom questions in the page that starts with the above domain, followed by random numbers"
+        "note": "Redirects to this page for registration"
       },
       {
         "type": "loginSuccess",
         "identifierType": "urlIncludes&elementPresent",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
+          "includedString": "https://www.bbc.com/",
           "elementSelectors": [
-            "div.c_q.c_c"
+            "#idcta-username"
           ]
         },
-        "note": "Goes to a url that starts with the above, followed by random numbers"
+        "note": "Refreshes and redirects to main page"
       }
     ]
   },
-
+  
   //login config navigation
   "loginConfig": {
     "navigation": [
@@ -121,7 +125,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-email']"
+            "#user-identifier-input"
           ],
           "value": "[account:_emailAddress]"
         },
@@ -132,7 +136,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-password']"
+            "#password-input"
           ],
           "value": "[account:password]"
         },
@@ -142,28 +146,31 @@ module.exports = {
         "type": "elementClick",
         "content": {
           "elementSelectors": [
-            "button[data-testid='login-submit-button']"
+            "#submit-button"
           ]
         },
         "note": "Click on ______"
       }
 
+
     ]
   },
+  
   "signupConfig": {
     "agreements": [],
     "customQuestions": [],
     "navigation": []
   },
+  
   "recoveryConfig": {
     "customQuestions": [],
     "navigation": []
   },
+  
   "checkConfig": {
     "navigation": []
   },
-
-
+  
   "manualActionConfig": {
     "login": {
       "listenFields": [
@@ -172,20 +179,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[name='login-input-email']" // should be the same as in loginConfig
+              "#user-identifier-input" // should be the same as in loginConfig
             ]
           },
-          "note": "Login email input field"
+          "note": "Email input field for login"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='login-input-password']" // should be the same as in loginConfig
+              "#password-input" // should be the same as in loginConfig
             ]
           },
-          "note": "Login password input field"
+          "note": "Password input field for login"
         }
       ],
       "triggerEvents": [
@@ -193,10 +200,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='login-submit-button']" // should be the same as in loginConfig
+              "#submit-button" // should be the same as in loginConfig
             ]
           },
-          "note": "Login submit button"
+          "note": "Submit button for login"
         }
       ]
     },
@@ -207,20 +214,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[data-testid='signup-input-email']" // should be the same as in signupConfig
+              "#user-identifier-input" // should be the same as in signupConfig
             ]
           },
-          "note": "Email input field"
+          "note": "Email input field for sign up"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='signup-input-password']" // should be the same as in signupConfig
+              "#password-input" // should be the same as in signupConfig
             ]
           },
-          "note": "Password input field"
+          "note": "Password input field for sign up"
         }
       ],
       "triggerEvents": [
@@ -228,10 +235,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='signup-submit-button']" // should be the same as in signupConfig
+              "#submit-button" // should be the same as in signupConfig
             ]
           },
-          "note": "Create Account button"
+          "note": "Submit button for sign up"
         }
       ]
       // "successState": {

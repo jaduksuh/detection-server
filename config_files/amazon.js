@@ -1,159 +1,164 @@
 module.exports = {
-  "serviceName": "calendly",
-  "officialName": "Calendly",
+  "serviceName": "amazon",
+  "officialName": "Amazon",
   "accountData": [
-    "_emailAddress",
     "_firstName+' '+_lastName",
+    "_emailAddress",
     "password"
   ],
   "passwordRequirement": {
-    "minLength": 8, 
-    "maxLength": -1,
+    "minLength": 6, 
+    "maxLength": 1024,
     "mustInclude": []
   },
   /*********************************************************************************************************/
   "entrypointConfig": {
-    "rootDomain": "calendly.com", 
-    "subDomain": "NONE.calendly.com", 
-    "entrypoints": [
-      {
-        "type": "login",
-        "identifierType": "urlStartWith",
-        "identifier": {
-          "startUrl": "https://calendly.com/app/login",
-        },
-        "note": "Refreshed upon login page"
-      }, 
-      {
-          "type": "login",
-          "identifierType": "urlStartWith",
-          "identifier": {
-            "startUrl": "https://calendly.com/login",
-          },
-          "note": "Refreshed upon login page"
-      },
+    "rootDomain": "amazon.com", 
+    "subDomain": "ALL.amazon.com", 
+    "entrypoints": [ 
       {
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "#gatsby-focus-wrapper > div > section.sc-dTSzeu.jToNRF > div > ul.sc-bdnxRM.htlulr > li:nth-child(1) > a"
+            "#nav-flyout-ya-signin > a > span",
+            "#nav-link-accountList > div",
+            "#nav-signin-tooltip > a > span"
           ]
         },
         "note": "Clicked sign in button"
       },
       {
-          "type": "signup",
-          "identifierType": "urlStartWith",
-          "identifier": {
-            "startUrl": "https://calendly.com/app/signup"
-          },
-          "note": "Refreshed upon signup page"
+        "type": "login",
+        "identifierType": "urlStartWith",
+        "identifier": {
+          "startUrl": "https://www.amazon.com/ap/signin"
+        },
+        "note": "Refreshed upon login page"
       },
       {
         "type": "signup",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "#gatsby-focus-wrapper > div > section.sc-dTSzeu.jToNRF > div > ul.sc-bdnxRM.htlulr > li.skip > a",
-            "#gatsby-focus-wrapper > div > section:nth-child(3) > div > div > div.sc-bdnxRM.dTmbfc > form > div.sc-eCApnc.ioPoEX > button"
+            "#nav-flyout-ya-newCust > a",
+            "#createAccountSubmit"
           ]
         },
-        "note": "Clicked sign in button"
+        "note": "Clicked new customer? button"
       },
       {
-          "type": "recovery",
-          "identifierType": "elementClickedOn",
-          "identifier": {
+        "type": "signup",
+        "identifierType": "urlStartWith",
+        "identifier": {
+          "startUrl": "https://www.amazon.com/ap/register"
+        },
+        "note": "Refreshed upon login page"
+      },
+      {
+        "type": "recovery",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#auth-fpp-link-bottom"
+          ]
+        },
+        "note": "Clicked new customer? button"
+      },
+      {
+        "type": "recovery",
+        "identifierType": "urlStartWith",
+        "identifier": {
+          "startUrl": "https://www.amazon.com/ap/forgotpassword"
+        },
+        "note": "Refreshed upon login page"
+      },
+      {
+        "type": "loginSuccess",
+        "identifierType": "urlIncludes&elementPresent",
+        "identifier": {
+            "includedString": "www.amazon.com",
             "elementSelectors": [
-              "#main-region > div > div.js-step-region > div > div > div > div > div > h5 > a > strong"
+              "#nav-your-amazon-text",
+              "#nav-recently-viewed"
             ]
-          },
-          "note": "Pressed 'Send me a recovery email' button"
+        },
+        "note": "returned to main page after login"
       },
       {
-          "type": "loginSuccess",
-          "identifierType": "urlIncludes",
-          "identifier": {
-              "includedString": "calendly.com/event_types/user/me"
-          },
-          "note": "returned to main page after login"
+        "type": "signupSuccess",
+        "identifierType": "urlIncludes",
+        "identifier": {
+            "includedString": "https://www.amazon.com/ap/cvf/request"
         },
-        {
-          "type": "signupSuccess",
-          "identifierType": "urlIncludes&elementPresent",
-          "identifier": {
-              "includedString": "calendly.com/app/signup",
-              "elementSelectors": [
-                "#main-region > div > div.js-step-region > div > div > div > div > div > div > div > p > a"
-              ]
-          },
-          "note": "Redirected to main page after signup"
+        "note": "Redirected to email verification after signup"
+      },
+      {
+        "type": "triggerInitialContact",
+        "identifierType": "elementClickedOn&delay",
+        "identifier": {
+            "elementSelectors": [],
+            "delay": 0.5
         },
-        {
-          "type": "triggerInitialContact",
-          "identifierType": "elementClickedOn&delay",
-          "identifier": {
-              "elementSelectors": [
-                "[class=auth-controls]",
-                "[type=submit]"
-              ],
-              "delay": 1
-          },
-          "note": "Redirected to main page after signup"
-        },
+        "note": ""
+      }
     ]
   },
   /*********************************************************************************************************/
   "loginConfig": { 
     "navigation": [
       {
-          "type": "elementClearSendkeys",
-          "content": {
-            "fetch": true,
-            "elementSelectors": [
-              "input[name=email]",
-            ],
-            "value": "[account:_emailAddress]"
-          },
-          "note": "Type in email address"
+        "type": "delay",
+        "content": {
+          "duration": 0.2
+        },
+        "note": "Wait for 0.2 seconds"  
       },
       {
-          "type": "elementClick",
-          "content": {
-            "elementSelectors": [
-              "button[type='submit']"
-            ]
-          },
-          "note": "Click on 'Log in' button"
+        "type": "elementClearSendkeys",
+        "content": {
+          "fetch": true,
+          "elementSelectors": [
+            "#ap_email",
+          ],
+          "value": "[account:_emailAddress]"
+        },
+        "note": "Type in email address"
       },
       {
-          "type": "delay",
-          "content": {
-            "duration": 0.1
-          },
-          "note": "Wait for 0.1 seconds"  
+        "type": "elementClearSendkeys",
+        "content": {
+          "fetch": true,
+          "elementSelectors": [
+            "#ap_password",
+          ],
+          "value": "[account:password]"
+        },
+        "note": "Type in password"
       },
       {
-          "type": "elementClearSendkeys",
-          "content": {
-            "fetch": true,
-            "elementSelectors": [
-              "input[name=password]",
-            ],
-            "value": "[account:password]"
-          },
-          "note": "Type in password"
+        "type": "delay",
+        "content": {
+          "duration": 0.1
+        },
+        "note": "Wait for 0.1 seconds"  
       },
       {
-          "type": "elementClick",
-          "content": {
-            "elementSelectors": [
-              "input[value=Continue]"
-            ]
-          },
-          "note": "Click on 'Continue' button"
+        "type": "elementClick",
+        "content": {
+          "elementSelectors": [
+            "input[type='submit']"
+          ]
+        },
+        "note": "Click on 'Sign in' button"
       },
+      {
+        "type": "delay",
+        "content": {
+          "duration": 0.3
+        },
+        "note": "Wait for 0.3 seconds"  
+      }
     ]
   },
   /*********************************************************************************************************/
@@ -207,7 +212,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "[name=email]"
+              "#ap_email"
             ]
           },
           "note": "Read in email address"
@@ -217,7 +222,7 @@ module.exports = {
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "[name=password]"
+              "#ap_password"
             ]
           },
           "note": "Read in password"
@@ -228,19 +233,19 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "[value=Continue]"
+              "input[type='submit']"
             ]
           },
-          "note": "Clicked on 'Continue' button"
+          "note": "Clicked on Sign in button"
         },
         {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[type='submit']"
+              "#signInSubmit"
             ]
           },
-          "note": "Clicked on 'Log in' button"
+          "note": "Clicked on Sign in button"
         }
       ]
     },
@@ -251,7 +256,8 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "[name=email]"
+              "input[name='email']",
+              "#ap_email"
             ]
           },
           "note": "Read in email address"
@@ -261,7 +267,8 @@ module.exports = {
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "[name=password]"
+              "input[name='password']",
+              "#ap_password"
             ]
           },
           "note": "Read in password"
@@ -272,10 +279,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "[value=Continue]"
+              "#continue"
             ]
           },
-          "note": "Clicked on 'Continue' button"
+          "note": "Clicked on Create Amazon account button"
         }
       ]
       // "successState": {

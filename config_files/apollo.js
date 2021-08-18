@@ -22,7 +22,7 @@ module.exports = {
     "entrypoints": [
       
       //login entrypoints
-      {
+      /*{
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
@@ -31,7 +31,7 @@ module.exports = {
           ]
         },
         "note": "CLicked login from home page"
-      },
+      }, */
       {
         "type": "login",
         "identifierType": "elementClickedOn",
@@ -46,7 +46,7 @@ module.exports = {
         "type": "login",
         "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "app.apollo.io/#/login?"
+          "includedString": "login"
         },
         "note": "Redirects to this page for login"
       },
@@ -130,6 +130,14 @@ module.exports = {
           ]
         },
         "note": "Refreshes to this onboarding page upon successful account creation"
+      },
+      {
+        "type": "signupSuccess",
+        "identifierType": "urlIncludes",
+        "identifier": {
+          "includedString": "https://app.apollo.io/#/temporary-password-redirect?redirect_to=undefined",
+        },
+        "note": "Refreshes to this waiting page upon successful account creation for a few seconds"
       },
       {
         "type": "loginSuccess",

@@ -1,48 +1,52 @@
 module.exports = {
-  "serviceName": "cloudflare",
-  "officialName": "Cloudflare",
+  "serviceName": "udemy",
+  "officialName": "Udemy",
   "accountData": [
+    "_firstName+' '+_lastName",
     "_emailAddress",
     "password"
   ],
   
   "passwordRequirement": {
-    "minLength": 8,
+    "minLength": 6,
     "maxLength": -1,
-    "mustInclude": [
-
-      "specialChar",
-      "number"
-      
-    ],
-    "mustNotInclude": [
-
-    ]
+    "mustInclude": [],
+    "mustNotInclude": []
   },
-  
+
   "entrypointConfig": {
-    "rootDomain": "cloudflare.com",
-    "subDomain": "ALL.cloudflare.com",
+    "rootDomain": "udemy.com",
+    "subDomain": "ALL.udemy.com",
     "entrypoints": [
-      
       //login entrypoints
       {
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/login']"
+            "#udemy > div.main-content-wrapper > div.ud-app-loader.ud-component--header-v6--header.udlite-header.ud-app-loaded > div.udlite-text-sm.header--header--3sK1h.header--flex-middle--2Xqjv > div:nth-child(8) > a",
+            "#udemy > div.main-content-wrapper > div.ud-app-loader.ud-component--header-v6--header.udlite-header.ud-app-loaded > div.udlite-text-sm.header--header--3sK1h.header--flex-middle--2Xqjv > div:nth-child(8)"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "Login button from the home page"
       },
       {
         "type": "login",
-        "identifierType": "urlStartWith",
+        "identifierType": "elementClickedOn",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/login"
+          "elementSelectors": [
+            "#udemy > div.main-content-wrapper > div.main-content > div.signup-modal-wrapper > div > div > div.loginbox-v4__footer > a"
+          ]
         },
-        "note": "Redirects to this page for login"
+        "note": "Login button from the sign up page"
+      },
+      {
+        "type": "login",
+        "identifierType": "urlIncludes",
+        "identifier": {
+          "includedString": "https://www.udemy.com/join/login"
+        },
+        "note": "Redirects upon clicking"
       },
 
       //signup entrypoints
@@ -51,18 +55,28 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/sign-up']"
+            "#udemy > div.main-content-wrapper > div.ud-app-loader.ud-component--header-v6--header.udlite-header.ud-app-loaded > div.udlite-text-sm.header--header--3sK1h.header--flex-middle--2Xqjv > div:nth-child(9) > a"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "Sign up button from home page"
       },
       {
         "type": "signup",
-        "identifierType": "urlStartWith",
+        "identifierType": "elementClickedOn",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/sign-up"
+          "elementSelectors": [
+            "#udemy > div.main-content-wrapper > div.main-content > div.loginbox-v4.modal-content-wrapper.ud-app-loader.ud-app-loaded > div.loginbox-v4__footer > div:nth-child(1) > a"
+          ]
         },
-        "note": "Redirects to this page for sign up"
+        "note": "Sign up button from login page"
+      },
+      {
+        "type": "signup",
+        "identifierType": "urlIncludes",
+        "identifier": {
+          "includedString": "https://www.udemy.com/join/signup-popup"
+        },
+        "note": "Redirects upon clicking sign up"
       },
 
       //recovery entrypoints
@@ -71,42 +85,39 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/forgot-password']"
+            "#login-form > div.form-actions > div > a"
           ]
         },
-        "note": "Forgot password button"
+        "note": "Clicking forgot password from login screen"
       },
       {
         "type": "recovery",
-        "identifierType": "urlStartWith",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/forgot-password"
+          "includedString": "https://www.udemy.com/user/forgot-password"
         },
-        "note": "Redirects to this page for password recovery"
+        "note": "Redirects upon clicking"
       },
 
       //signup + login success entrypoints
       {
         "type": "signupSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://www.udemy.com/occupation/explorer/"
         },
-        "note": "Asks for more cusstom questions in the page that starts with the above domain, followed by random numbers"
+        "note": "Redirects to this page upon successful account creation"
       },
       {
         "type": "loginSuccess",
         "identifierType": "urlIncludes&elementPresent",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
+          "includedString": "www.udemy.com",
           "elementSelectors": [
-            "div.c_q.c_c"
+            "#udemy > div.main-content-wrapper > div.main-content > div.ud-component--browse--link-bar > nav > ul"
           ]
         },
-        "note": "Goes to a url that starts with the above, followed by random numbers"
+        "note": "_______"
       }
     ]
   },
@@ -114,14 +125,12 @@ module.exports = {
   //login config navigation
   "loginConfig": {
     "navigation": [
-
-
       {
         "type": "elementClearSendkeys",
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-email']"
+            "#email--1"
           ],
           "value": "[account:_emailAddress]"
         },
@@ -132,7 +141,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-password']"
+            "#id_password"
           ],
           "value": "[account:password]"
         },
@@ -142,12 +151,11 @@ module.exports = {
         "type": "elementClick",
         "content": {
           "elementSelectors": [
-            "button[data-testid='login-submit-button']"
+            "#submit-id-submit"
           ]
         },
-        "note": "Click on ______"
-      }
-
+        "note": "Click on submit"
+      },
     ]
   },
   "signupConfig": {
@@ -172,20 +180,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[name='login-input-email']" // should be the same as in loginConfig
+              "#email--1" // should be the same as in loginConfig
             ]
           },
-          "note": "Login email input field"
+          "note": "Login screen email input field"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='login-input-password']" // should be the same as in loginConfig
+              "#id_password" // should be the same as in loginConfig
             ]
           },
-          "note": "Login password input field"
+          "note": "Login screen password input field"
         }
       ],
       "triggerEvents": [
@@ -193,10 +201,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='login-submit-button']" // should be the same as in loginConfig
+              "#submit-id-submit" // should be the same as in loginConfig
             ]
           },
-          "note": "Login submit button"
+          "note": "Submit button"
         }
       ]
     },
@@ -207,20 +215,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[data-testid='signup-input-email']" // should be the same as in signupConfig
+              "#email--1" // should be the same as in signupConfig
             ]
           },
-          "note": "Email input field"
+          "note": "_____"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='signup-input-password']" // should be the same as in signupConfig
+              "#password" // should be the same as in signupConfig
             ]
           },
-          "note": "Password input field"
+          "note": "_____"
         }
       ],
       "triggerEvents": [
@@ -228,10 +236,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='signup-submit-button']" // should be the same as in signupConfig
+              "#submit-id-submit" // should be the same as in signupConfig
             ]
           },
-          "note": "Create Account button"
+          "note": "_____"
         }
       ]
       // "successState": {
@@ -244,6 +252,4 @@ module.exports = {
     },
     "recovery": {}
   }
-
-  
 };

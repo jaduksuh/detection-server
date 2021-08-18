@@ -1,28 +1,26 @@
 module.exports = {
-    "serviceName": "bitly",
-    "officialName": "Bitly",
+    "serviceName": "sendgrid",
+    "officialName": "SendGrid",
     "accountData": [
-      "_username",
       "_emailAddress",
+      "_username", // under default conditions, username = email address
       "password"
     ],
     "passwordRequirement": {
-      "minLength": 6, 
+      "minLength": 16, 
       "maxLength": -1,
-      "mustInclude": [ 
-        "number", "special", "lowerCase||upperCase"
-      ]
+      "mustInclude": []
     },
     /*********************************************************************************************************/
     "entrypointConfig": {
-      "rootDomain": "bitly.com", 
-      "subDomain": "ALL.bitly.com", 
+      "rootDomain": "sendgrid.com", 
+      "subDomain": "ALL.sendgrid.com", 
       "entrypoints": [ 
         {
             "type": "login",
             "identifierType": "urlStartWith",
             "identifier": {
-              "startUrl": "https://bitly.com/a/sign_in"
+              "startUrl": "https://app.sendgrid.com/login"
             },
             "note": "Refreshed upon login page"
         },
@@ -31,8 +29,7 @@ module.exports = {
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sidemenu > li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-70 > a",
-              "#sign-in-link"
+              "#gatsby-focus-wrapper > div > nav > div.css-1f7wcey.ergh2hd3 > div:nth-child(2) > a"
             ]
           },
           "note": "Clicked on login button"
@@ -41,7 +38,7 @@ module.exports = {
             "type": "signup",
             "identifierType": "urlStartWith",
             "identifier": {
-              "startUrl": "https://bitly.com/a/sign_up"
+              "startUrl": "https://signup.sendgrid.com"
             },
             "note": "Refreshed upon signup page"
         },
@@ -50,17 +47,20 @@ module.exports = {
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sidemenu > li.blue.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-4016 > a",
-              "#post-6438 > div > section.full-width-content.text-content.no-padding-bottom > div > div > div > h2 > a"
+              "a[href='https://signup.sendgrid.com']",
+              "#gatsby-focus-wrapper > div > nav > div.css-1324b11.ergh2hd4 > button",
+              "#gatsby-focus-wrapper > div > div > div > header > div > div.row.row--small > div > button",
+              "#gatsby-focus-wrapper > div > div > div > header > div:nth-child(1) > button",
+              "#gatsby-focus-wrapper > div > div > div > div.p-relative.p-bottom-5.text-center.bg-offset-short-light-blue-bottom > div > div > div > a.btn.btn--primary.btn--large"
             ]
           },
-          "note": "Clicked on login button"
+          "note": "Clicked on signup button"
         },
         {
             "type": "recovery",
             "identifierType": "urlStartWith",
             "identifier": {
-              "startUrl": "https://bitly.com/a/forgot_password"
+              "startUrl": "https://app.sendgrid.com/forgot_password"
             },
             "note": "Refreshed upon recovery page"
         },
@@ -69,17 +69,17 @@ module.exports = {
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sign-in > div.susi-fields-wrapper > fieldset > a"
+              "body > div.layout > main > div.login-container > div > div.login-modal > div > div:nth-child(1) > div > form > div.row.login-password-options > div > a"
             ]
           },
-          "note": "Clicked on recovery button"
+          "note": "Clicked on Forgot your password button"
         },
         {
             "type": "loginSuccess",
             "identifierType": "urlIncludes",
             "identifier": {
                 "includedString": [
-                    "app.bitly.com"
+                    "app.sendgrid.com"
                 ]
             },
             "note": "returned to main page after login"
@@ -89,40 +89,41 @@ module.exports = {
             "identifierType": "urlIncludes",
             "identifier": {
                 "includedString": [
-                    "app.bitly.com"
+                    "https://signup.sendgrid.com/account_details"
                 ]
             },
-            "note": "Redirected to main page after signup"
+            "note": "Redirected to additional info page after signup"
           },
+          {
+            "type": "triggerInitialContact",
+            "identifierType": "urlIncludes",
+            "identifier": {
+                "includedString": []
+            },
+            "note": "______"
+          }
       ]
     },
     /*********************************************************************************************************/
     "loginConfig": { 
       "navigation": [
         {
-            "type": "delay",
-            "content": {
-              "duration": 0.1
-            },
-            "note": "Wait for 0.1 seconds"  
-        },
-        {
             "type": "elementClearSendkeys",
             "content": {
               "fetch": true,
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.text",
+                "#usernameContainer-input-id",
               ],
-              "value": "[account:_emailAddress]"
+              "value": "[account:_username]"
             },
-            "note": "Type in email address"
+            "note": "Type in username" // under default conditions, username = email address
         },
         {
             "type": "elementClearSendkeys",
             "content": {
               "fetch": true,
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.pw",
+                "#passwordContainer-input-id",
               ],
               "value": "[account:password]"
             },
@@ -132,17 +133,10 @@ module.exports = {
             "type": "elementClick",
             "content": {
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.button.button-primary.sign-up-in"
+                "body > div.layout > main > div.login-container > div > div.login-modal > div > div:nth-child(1) > div > form > div.login-btn > button"
               ]
             },
             "note": "Click on 'Log in' button"
-        },
-        {
-          "type": "delay",
-          "content": {
-            "duration": 0.1
-          },
-          "note": "Wait for 0.1 seconds"  
         },
       ]
     },
@@ -195,19 +189,19 @@ module.exports = {
           {
             "type": "value",
             "content": {
-              "dataField": "_emailAddress",
+              "dataField": "_username",
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.text"
+                "#usernameContainer-input-id"
               ]
             },
-            "note": "Read in email address"
+            "note": "Read in username"
           },
           {
             "type": "value",
             "content": {
               "dataField": "password",
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.pw"
+                "#passwordContainer-input-id"
               ]
             },
             "note": "Read in password"
@@ -218,10 +212,10 @@ module.exports = {
             "type": "elementClickedOn",
             "content": {
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.button.button-primary.sign-up-in"
+                "body > div.layout > main > div.login-container > div > div.login-modal > div > div:nth-child(1) > div > form > div.login-btn > button"
               ]
             },
-            "note": "Clicked on 'Log in' button"
+            "note": "Clicked on login button"
           }
         ]
       },
@@ -230,29 +224,29 @@ module.exports = {
           {
             "type": "value",
             "content": {
-              "dataField": "_username",
-              "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input:nth-child(2)"
-                ]
-            },
-            "note": "Read in username"
-          },
-          {
-            "type": "value",
-            "content": {
               "dataField": "_emailAddress",
               "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input:nth-child(5)"
+                "#email"
               ]
             },
             "note": "Read in email address"
+          },
+					{
+            "type": "value",
+            "content": {
+              "dataField": "_username",
+              "elementSelectors": [
+                "#email",
+              ]
+            },
+            "note": "Read in username (email)"
           },
           {
             "type": "value",
             "content": {
               "dataField": "password",
               "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input.pw"
+                "#password"
               ]
             },
             "note": "Read in password"
@@ -263,10 +257,10 @@ module.exports = {
             "type": "elementClickedOn",
             "content": {
               "elementSelectors": [
-                "#submit"
+                "#root > main > article > section > section > button"
               ]
             },
-            "note": "Clicked on 'Sign up' button"
+            "note": "Clicked on 'Create Account' button"
           }
         ]
         // "successState": {

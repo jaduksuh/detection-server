@@ -1,8 +1,12 @@
 module.exports = {
-  "serviceName": "cloudflare",
-  "officialName": "Cloudflare",
+  "serviceName": "zipcar",
+  "officialName": "Zipcar",
   "accountData": [
+    "_firstName",
+    "_lastName",
     "_emailAddress",
+    "_phoneNumber_countryCode_noPlus", // "1"
+    "_phoneNumber_main_noHyphen", // "2345678901"
     "password"
   ],
   
@@ -11,6 +15,8 @@ module.exports = {
     "maxLength": -1,
     "mustInclude": [
 
+      "lowerCase",
+      "upperCase",
       "specialChar",
       "number"
       
@@ -21,8 +27,8 @@ module.exports = {
   },
   
   "entrypointConfig": {
-    "rootDomain": "cloudflare.com",
-    "subDomain": "ALL.cloudflare.com",
+    "rootDomain": "zipcar.com",
+    "subDomain": "ALL.zipcar.com",
     "entrypoints": [
       
       //login entrypoints
@@ -31,7 +37,7 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/login']"
+            "#main-menu > div.top-bar-right.user-links > a.custom-button-user"
           ]
         },
         "note": "CLicked login from home page"
@@ -40,7 +46,7 @@ module.exports = {
         "type": "login",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/login"
+          "startUrl": "https://my.zipcar.com/login"
         },
         "note": "Redirects to this page for login"
       },
@@ -51,16 +57,36 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/sign-up']"
+            "#main-menu > div.top-bar-right.user-links > a.button.round.hollow.button--on-dark.button--medium.join-button"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "Clicked sign up from home page - this redirects users to a pricing page where users get to choose what plan they want to sign up for but it still counts as a expression of wanting an account here"
+      },
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#select-rates-content > div.zipcar-np-membership-plan.rate-plan-three-tiers--container.row.content-lg.rate-plan-three-tiers--us-ca.two-up > div.select-rates-column.rate-plan-three-tiers--column.rate-plan-1 > div > div.button-cta.button-cta--desktop > a"
+          ]
+        },
+        "note": "Select plan button from the pricing page 1/2"
+      },
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#select-rates-content > div.zipcar-np-membership-plan.rate-plan-three-tiers--container.row.content-lg.rate-plan-three-tiers--us-ca.two-up > div.select-rates-column.rate-plan-three-tiers--column.rate-plan-2 > div > div.button-cta.button-cta--desktop > a"
+          ]
+        },
+        "note": "Select plan button from the pricing page 2/2"
       },
       {
         "type": "signup",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/sign-up"
+          "startUrl": "https://my.zipcar.com/signup"
         },
         "note": "Redirects to this page for sign up"
       },
@@ -71,16 +97,16 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/forgot-password']"
+            "#root > div > div > div > form > div.remember-me-container > a"
           ]
         },
-        "note": "Forgot password button"
+        "note": "Forgot password button at the login page"
       },
       {
         "type": "recovery",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/forgot-password"
+          "startUrl": "https://my.zipcar.com/login/forgot-password"
         },
         "note": "Redirects to this page for password recovery"
       },
@@ -88,25 +114,19 @@ module.exports = {
       //signup + login success entrypoints
       {
         "type": "signupSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://my.zipcar.com/book/welcome"
         },
-        "note": "Asks for more cusstom questions in the page that starts with the above domain, followed by random numbers"
+        "note": "Redirected to a page that starts with the above URL upon successful account creation"
       },
       {
         "type": "loginSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://my.zipcar.com/book"
         },
-        "note": "Goes to a url that starts with the above, followed by random numbers"
+        "note": "Redirects to this page upon successful login"
       }
     ]
   },
@@ -121,7 +141,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-email']"
+            "#email"
           ],
           "value": "[account:_emailAddress]"
         },
@@ -132,7 +152,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-password']"
+            "#password"
           ],
           "value": "[account:password]"
         },
@@ -142,11 +162,12 @@ module.exports = {
         "type": "elementClick",
         "content": {
           "elementSelectors": [
-            "button[data-testid='login-submit-button']"
+            "#root > div > div > div > form > button"
           ]
         },
-        "note": "Click on ______"
+        "note": "Click on Sign in"
       }
+
 
     ]
   },
@@ -172,20 +193,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[name='login-input-email']" // should be the same as in loginConfig
+              "#email" // should be the same as in loginConfig
             ]
           },
-          "note": "Login email input field"
+          "note": "Email input field for login"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='login-input-password']" // should be the same as in loginConfig
+              "#password" // should be the same as in loginConfig
             ]
           },
-          "note": "Login password input field"
+          "note": "Password input field for login"
         }
       ],
       "triggerEvents": [
@@ -193,10 +214,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='login-submit-button']" // should be the same as in loginConfig
+              "#root > div > div > div > form > button" // should be the same as in loginConfig
             ]
           },
-          "note": "Login submit button"
+          "note": "Submit button for login"
         }
       ]
     },
@@ -207,20 +228,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[data-testid='signup-input-email']" // should be the same as in signupConfig
+              "input[name='email_address']" // should be the same as in signupConfig
             ]
           },
-          "note": "Email input field"
+          "note": "Email input field for sign up"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='signup-input-password']" // should be the same as in signupConfig
+              "input[name='password']" // should be the same as in signupConfig
             ]
           },
-          "note": "Password input field"
+          "note": "Password input field for sign up"
         }
       ],
       "triggerEvents": [
@@ -228,10 +249,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='signup-submit-button']" // should be the same as in signupConfig
+              "#form-submit-button" // should be the same as in signupConfig
             ]
           },
-          "note": "Create Account button"
+          "note": "Submit button for sign up"
         }
       ]
       // "successState": {

@@ -1,9 +1,10 @@
 module.exports = {
-  "serviceName": "calendly",
-  "officialName": "Calendly",
+  "serviceName": "triplebyte",
+  "officialName": "Triplebyte",
   "accountData": [
+    "_firstName",
+    "_lastName",
     "_emailAddress",
-    "_firstName+' '+_lastName",
     "password"
   ],
   "passwordRequirement": {
@@ -13,146 +14,136 @@ module.exports = {
   },
   /*********************************************************************************************************/
   "entrypointConfig": {
-    "rootDomain": "calendly.com", 
-    "subDomain": "NONE.calendly.com", 
-    "entrypoints": [
+    "rootDomain": "triplebyte.com", 
+    "subDomain": "NONE.triplebyte.com", 
+    "entrypoints": [ 
       {
         "type": "login",
-        "identifierType": "urlStartWith",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "startUrl": "https://calendly.com/app/login",
+          "includedString": "https://triplebyte.com/users/sign_in#Login"
         },
         "note": "Refreshed upon login page"
-      }, 
-      {
-          "type": "login",
-          "identifierType": "urlStartWith",
-          "identifier": {
-            "startUrl": "https://calendly.com/login",
-          },
-          "note": "Refreshed upon login page"
       },
       {
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "#gatsby-focus-wrapper > div > section.sc-dTSzeu.jToNRF > div > ul.sc-bdnxRM.htlulr > li:nth-child(1) > a"
+            "#js-navigation-tools > ul > li:nth-child(4) > a",
+            "#signup-right-panel > div > div.text-grey-dark > p:nth-child(2) > a"
           ]
         },
         "note": "Clicked sign in button"
       },
       {
-          "type": "signup",
-          "identifierType": "urlStartWith",
-          "identifier": {
-            "startUrl": "https://calendly.com/app/signup"
-          },
-          "note": "Refreshed upon signup page"
+        "type": "signup",
+        "identifierType": "urlIncludes",
+        "identifier": {
+          "includedString": "https://triplebyte.com/users/sign_up"
+        },
+        "note": "Refreshed upon signup page"
       },
       {
         "type": "signup",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "#gatsby-focus-wrapper > div > section.sc-dTSzeu.jToNRF > div > ul.sc-bdnxRM.htlulr > li.skip > a",
-            "#gatsby-focus-wrapper > div > section:nth-child(3) > div > div > div.sc-bdnxRM.dTmbfc > form > div.sc-eCApnc.ioPoEX > button"
+            "#js-navigation-tools > ul > li:nth-child(4) > a",
+            "#v2-registration > div.tab-menu.tab-menu--horizontal.tab-menu--large-white > ul > li:nth-child(1) > a"
           ]
         },
         "note": "Clicked sign in button"
       },
       {
-          "type": "recovery",
-          "identifierType": "elementClickedOn",
-          "identifier": {
-            "elementSelectors": [
-              "#main-region > div > div.js-step-region > div > div > div > div > div > h5 > a > strong"
-            ]
-          },
-          "note": "Pressed 'Send me a recovery email' button"
+        "type": "recovery",
+        "identifierType": "urlIncludes",
+        "identifier": {
+          "includedString": "https://triplebyte.com/users/password/new"
+        },
+        "note": "Refreshed upon recovery page"
       },
       {
-          "type": "loginSuccess",
-          "identifierType": "urlIncludes",
-          "identifier": {
-              "includedString": "calendly.com/event_types/user/me"
-          },
-          "note": "returned to main page after login"
+        "type": "recovery",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#new_user > div.flex-between-center.mt-4 > div > a"
+          ]
         },
-        {
-          "type": "signupSuccess",
-          "identifierType": "urlIncludes&elementPresent",
-          "identifier": {
-              "includedString": "calendly.com/app/signup",
-              "elementSelectors": [
-                "#main-region > div > div.js-step-region > div > div > div > div > div > div > div > p > a"
-              ]
-          },
-          "note": "Redirected to main page after signup"
+        "note": "Clicked sign in button"
+      },
+      {
+        "type": "loginSuccess",
+        "identifierType": "urlIncludes&elementPresent",
+        "identifier": {
+          "includedString": "triplebyte.com/candidates",
+          "elementSelectors": [
+            "#navbar-avatar"
+          ]
         },
-        {
-          "type": "triggerInitialContact",
-          "identifierType": "elementClickedOn&delay",
-          "identifier": {
-              "elementSelectors": [
-                "[class=auth-controls]",
-                "[type=submit]"
-              ],
-              "delay": 1
-          },
-          "note": "Redirected to main page after signup"
+        "note": "returned to main page after login"
+      },
+      {
+        "type": "signupSuccess",
+        "identifierType": "urlIncludes&elementPresent",
+        "identifier": {
+          "includedString": "triplebyte.com/candidates",
+          "elementSelectors": [
+            "#navbar-avatar"
+          ]
         },
+        "note": "returned to main page after signup"
+      },
     ]
   },
   /*********************************************************************************************************/
   "loginConfig": { 
     "navigation": [
       {
-          "type": "elementClearSendkeys",
-          "content": {
-            "fetch": true,
-            "elementSelectors": [
-              "input[name=email]",
-            ],
-            "value": "[account:_emailAddress]"
-          },
-          "note": "Type in email address"
+        "type": "delay",
+        "content": {
+          "duration": 0.1
+        },
+        "note": "Wait for 0.1 seconds"  
       },
       {
-          "type": "elementClick",
-          "content": {
-            "elementSelectors": [
-              "button[type='submit']"
-            ]
-          },
-          "note": "Click on 'Log in' button"
+        "type": "elementClearSendkeys",
+        "content": {
+          "fetch": true,
+          "elementSelectors": [
+            "#user_email",
+          ],
+          "value": "[account:_emailAddress]"
+        },
+        "note": "Type in email address"
       },
       {
-          "type": "delay",
-          "content": {
-            "duration": 0.1
-          },
-          "note": "Wait for 0.1 seconds"  
+        "type": "elementClearSendkeys",
+        "content": {
+          "fetch": true,
+          "elementSelectors": [
+            "#user_password",
+          ],
+          "value": "[account:password]"
+        },
+        "note": "Type in password"
       },
       {
-          "type": "elementClearSendkeys",
-          "content": {
-            "fetch": true,
-            "elementSelectors": [
-              "input[name=password]",
-            ],
-            "value": "[account:password]"
-          },
-          "note": "Type in password"
+        "type": "delay",
+        "content": {
+          "duration": 0.1
+        },
+        "note": "Wait for 0.1 seconds"  
       },
       {
-          "type": "elementClick",
-          "content": {
-            "elementSelectors": [
-              "input[value=Continue]"
-            ]
-          },
-          "note": "Click on 'Continue' button"
+        "type": "elementClick",
+        "content": {
+          "elementSelectors": [
+            "input[type='submit']"
+          ]
+        },
+        "note": "Click on 'Log in' button"
       },
     ]
   },
@@ -207,7 +198,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "[name=email]"
+              "#user_email"
             ]
           },
           "note": "Read in email address"
@@ -217,7 +208,7 @@ module.exports = {
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "[name=password]"
+              "#user_password"
             ]
           },
           "note": "Read in password"
@@ -228,16 +219,7 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "[value=Continue]"
-            ]
-          },
-          "note": "Clicked on 'Continue' button"
-        },
-        {
-          "type": "elementClickedOn",
-          "content": {
-            "elementSelectors": [
-              "button[type='submit']"
+              "input[type='submit']"
             ]
           },
           "note": "Clicked on 'Log in' button"
@@ -251,7 +233,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "[name=email]"
+              "#user_email"
             ]
           },
           "note": "Read in email address"
@@ -261,7 +243,7 @@ module.exports = {
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "[name=password]"
+              "#user_password"
             ]
           },
           "note": "Read in password"
@@ -272,10 +254,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "[value=Continue]"
+              "input[type='submit']"
             ]
           },
-          "note": "Clicked on 'Continue' button"
+          "note": "Clicked on 'Sign up' button"
         }
       ]
       // "successState": {

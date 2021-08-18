@@ -1,112 +1,128 @@
 module.exports = {
-  "serviceName": "cloudflare",
-  "officialName": "Cloudflare",
+  "serviceName": "clerky",
+  "officialName": "Clerky",
   "accountData": [
     "_emailAddress",
     "password"
   ],
   
   "passwordRequirement": {
-    "minLength": 8,
+    "minLength": 6,
     "maxLength": -1,
-    "mustInclude": [
-
-      "specialChar",
-      "number"
-      
-    ],
-    "mustNotInclude": [
-
-    ]
+    "mustInclude": [],
+    "mustNotInclude": []
   },
   
   "entrypointConfig": {
-    "rootDomain": "cloudflare.com",
-    "subDomain": "ALL.cloudflare.com",
+    "rootDomain": "clerky.com",
+    "subDomain": "ALL.clerky.com",
     "entrypoints": [
-      
+
+       //signup entrypoints - placed above login entrypoint because url overlaps
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
+          ]
+        },
+        "note": "Clicked get started from home page - there are two get started buttons"
+      },
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#main > section.section-custom > div > div > div:nth-child(2) > div > a"
+          ]
+        },
+        "note": "Clicked get started from home page - there are two"
+      },
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "body > div:nth-child(2) > div > div.col-sm-8.col-sm-offset-2.col-lg-4.col-lg-offset-4 > a"
+          ]
+        },
+        "note": "Clicked 'need an acccount?' from login page"
+      },
+      {
+        "type": "signup",
+        "identifierType": "urlStartWith",
+        "identifier": {
+          "startUrl": "https://app.clerky.com/signup"
+        },
+        "note": "Redirects to this exact url for sign up"
+      },
+
       //login entrypoints
       {
         "type": "login",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/login']"
+            "#navbar-collapse > ul.nav.navbar-nav.navbar-right > li.nav-link-log-in > a"
           ]
         },
         "note": "CLicked login from home page"
       },
       {
         "type": "login",
-        "identifierType": "urlStartWith",
-        "identifier": {
-          "startUrl": "https://dash.cloudflare.com/login"
-        },
-        "note": "Redirects to this page for login"
-      },
-
-      //signup entrypoints
-      {
-        "type": "signup",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/sign-up']"
+            "body > div:nth-child(2) > div > div > p > a"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "'alreay have an account' from sign up pages"
       },
       {
-        "type": "signup",
-        "identifierType": "urlStartWith",
+        "type": "login",
+        "identifierType": "urlIncludes&elementPresent",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/sign-up"
+          "includedString": "https://app.clerky.com/",
+          "elementSelectors": [
+            "input[name='user[email_address]']"
+          ]
         },
-        "note": "Redirects to this page for sign up"
+        "note": "This exact url is the login page"
       },
 
+     
       //recovery entrypoints
       {
         "type": "recovery",
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/forgot-password']"
+            "#inline_reset_password > div > div > form > div.modal-footer > input"
           ]
         },
-        "note": "Forgot password button"
-      },
-      {
-        "type": "recovery",
-        "identifierType": "urlStartWith",
-        "identifier": {
-          "startUrl": "https://dash.cloudflare.com/forgot-password"
-        },
-        "note": "Redirects to this page for password recovery"
+        "note": "Reset password button only pops up after failed login attempt"
       },
 
       //signup + login success entrypoints
       {
         "type": "signupSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://app.clerky.com/new_account_confirmation_requests"
         },
-        "note": "Asks for more cusstom questions in the page that starts with the above domain, followed by random numbers"
+        "note": "Asks you to verify your email upon successfully inputing your new password and email"
       },
       {
         "type": "loginSuccess",
         "identifierType": "urlIncludes&elementPresent",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
+          "includedString": "https://app.clerky.com/",
           "elementSelectors": [
-            "div.c_q.c_c"
+            "#main-links"
           ]
         },
-        "note": "Goes to a url that starts with the above, followed by random numbers"
+        "note": "Refreshes to this page after successful login - same url with the login screen"
       }
     ]
   },
@@ -121,7 +137,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-email']"
+            "#inline_user_email_address"
           ],
           "value": "[account:_emailAddress]"
         },
@@ -132,7 +148,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-password']"
+            "#inline_user_password"
           ],
           "value": "[account:password]"
         },
@@ -142,11 +158,12 @@ module.exports = {
         "type": "elementClick",
         "content": {
           "elementSelectors": [
-            "button[data-testid='login-submit-button']"
+            "#inline_new_session > input.btn.btn-primary.btn-block.mb-3"
           ]
         },
-        "note": "Click on ______"
+        "note": "Click on Sign in button"
       }
+
 
     ]
   },
@@ -172,20 +189,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[name='login-input-email']" // should be the same as in loginConfig
+              "#inline_user_email_address" // should be the same as in loginConfig
             ]
           },
-          "note": "Login email input field"
+          "note": "_____"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='login-input-password']" // should be the same as in loginConfig
+              "#inline_user_password" // should be the same as in loginConfig
             ]
           },
-          "note": "Login password input field"
+          "note": "_____"
         }
       ],
       "triggerEvents": [
@@ -193,10 +210,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='login-submit-button']" // should be the same as in loginConfig
+              "#inline_new_session > input.btn.btn-primary.btn-block.mb-3" // should be the same as in loginConfig
             ]
           },
-          "note": "Login submit button"
+          "note": "_____"
         }
       ]
     },
@@ -207,20 +224,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[data-testid='signup-input-email']" // should be the same as in signupConfig
+              "#email_address" // should be the same as in signupConfig
             ]
           },
-          "note": "Email input field"
+          "note": "email input field for sign up form"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='signup-input-password']" // should be the same as in signupConfig
+              "#password" // should be the same as in signupConfig
             ]
           },
-          "note": "Password input field"
+          "note": "password input field for sign up form"
         }
       ],
       "triggerEvents": [
@@ -228,10 +245,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='signup-submit-button']" // should be the same as in signupConfig
+              "body > div:nth-child(2) > div > div > form > div > div > div:nth-child(4) > input" // should be the same as in signupConfig
             ]
           },
-          "note": "Create Account button"
+          "note": "Get started button"
         }
       ]
       // "successState": {

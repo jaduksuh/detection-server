@@ -1,8 +1,9 @@
 module.exports = {
-    "serviceName": "bitly",
-    "officialName": "Bitly",
+    "serviceName": "ebay",
+    "officialName": "eBay",
     "accountData": [
-      "_username",
+      "_firstName",
+      "_lastName",
       "_emailAddress",
       "password"
     ],
@@ -10,19 +11,18 @@ module.exports = {
       "minLength": 6, 
       "maxLength": -1,
       "mustInclude": [ 
-        "number", "special", "lowerCase||upperCase"
+        "lowerCase||upperCase", "specialChar||number"
       ]
     },
-    /*********************************************************************************************************/
     "entrypointConfig": {
-      "rootDomain": "bitly.com", 
-      "subDomain": "ALL.bitly.com", 
+      "rootDomain": "ebay.com", 
+      "subDomain": "ALL.ebay.com", 
       "entrypoints": [ 
         {
             "type": "login",
             "identifierType": "urlStartWith",
             "identifier": {
-              "startUrl": "https://bitly.com/a/sign_in"
+              "startUrl": "https://signin.ebay.com"
             },
             "note": "Refreshed upon login page"
         },
@@ -31,8 +31,10 @@ module.exports = {
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sidemenu > li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-70 > a",
-              "#sign-in-link"
+              "#gh-ug > a",
+              "#gh-wl-click-body > div > div > div > a",
+              "#gh-eb-My > div > a.gh-eb-li-a.gh-rvi-menu",
+              "#mainContent > div.hl-cat-nav > ul > li.saved > a"
             ]
           },
           "note": "Clicked on login button"
@@ -41,7 +43,7 @@ module.exports = {
             "type": "signup",
             "identifierType": "urlStartWith",
             "identifier": {
-              "startUrl": "https://bitly.com/a/sign_up"
+              "startUrl": "https://signup.ebay.com"
             },
             "note": "Refreshed upon signup page"
         },
@@ -50,103 +52,125 @@ module.exports = {
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sidemenu > li.blue.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-4016 > a",
-              "#post-6438 > div > section.full-width-content.text-content.no-padding-bottom > div > div > div > h2 > a"
+              "#create-account-link"
             ]
           },
-          "note": "Clicked on login button"
+          "note": "Clicked on signup button"
         },
         {
             "type": "recovery",
-            "identifierType": "urlStartWith",
+            "identifierType": "elementClickedOn",
             "identifier": {
-              "startUrl": "https://bitly.com/a/forgot_password"
+                "elementSelectors": [
+                    "#email-btn"
+                ]
             },
-            "note": "Refreshed upon recovery page"
+            "note": "pressed 'Receive email' button from reset password page"
         },
         {
           "type": "recovery",
           "identifierType": "elementClickedOn",
           "identifier": {
             "elementSelectors": [
-              "#sign-in > div.susi-fields-wrapper > fieldset > a"
+              "#fyp-btn"
             ]
           },
-          "note": "Clicked on recovery button"
+          "note": "Clicked on reset password button"
         },
         {
-            "type": "loginSuccess",
-            "identifierType": "urlIncludes",
-            "identifier": {
-                "includedString": [
-                    "app.bitly.com"
-                ]
-            },
-            "note": "returned to main page after login"
+          "type": "loginSuccess",
+          "identifierType": "urlIncludes",
+          "identifier": {
+              "includedString": [
+                  "www.ebay.com"
+              ]
           },
-          {
-            "type": "signupSuccess",
-            "identifierType": "urlIncludes",
-            "identifier": {
-                "includedString": [
-                    "app.bitly.com"
-                ]
-            },
-            "note": "Redirected to main page after signup"
+          "note": "returned to main page after login"
+        },
+        {
+          "type": "signupSuccess",
+          "identifierType": "urlIncludes",
+          "identifier": {
+              "includedString": [
+                  "www.ebay.com"
+              ]
           },
+          "note": "returned to main page after signup"
+        },
       ]
     },
-    /*********************************************************************************************************/
     "loginConfig": { 
       "navigation": [
         {
             "type": "delay",
             "content": {
-              "duration": 0.1
+              "duration": 0.5
             },
-            "note": "Wait for 0.1 seconds"  
+            "note": "Wait for 0.5 seconds"  
         },
         {
             "type": "elementClearSendkeys",
             "content": {
               "fetch": true,
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.text",
+                "#userid"
               ],
               "value": "[account:_emailAddress]"
             },
             "note": "Type in email address"
         },
         {
+            "type": "delay",
+            "content": {
+              "duration": 0.5
+            },
+            "note": "Wait for 0.5 seconds"  
+        },
+        {
+            "type": "elementClick",
+            "content": {
+              "elementSelectors": [
+                "#signin-continue-btn"
+              ]
+            },
+            "note": "Click on 'Continue' button"
+        },
+        {
+            "type": "delay",
+            "content": {
+              "duration": 2.0
+            },
+            "note": "Wait for 2.0 seconds"  
+        },
+        {
             "type": "elementClearSendkeys",
             "content": {
               "fetch": true,
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.pw",
+                "#pass"
               ],
               "value": "[account:password]"
             },
             "note": "Type in password"
         },
         {
+            "type": "delay",
+            "content": {
+              "duration": 0.5
+            },
+            "note": "Wait for 0.5 seconds"  
+        },
+        {
             "type": "elementClick",
             "content": {
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.button.button-primary.sign-up-in"
+                "#sgnBt"
               ]
             },
-            "note": "Click on 'Log in' button"
-        },
-        {
-          "type": "delay",
-          "content": {
-            "duration": 0.1
-          },
-          "note": "Wait for 0.1 seconds"  
-        },
+            "note": "Click on 'Sign in' button"
+        }
       ]
     },
-    /*********************************************************************************************************/
     "signupConfig": {
       "agreements": [
         {
@@ -179,16 +203,13 @@ module.exports = {
         }
       ]
     },
-    /*********************************************************************************************************/
     "recoveryConfig": {
       "customQuestions": [],
       "navigation": []
     },
-    /*********************************************************************************************************/
     "checkConfig": {
       "navigation": []
     },
-    /*********************************************************************************************************/
     "manualActionConfig": {
       "login": {
         "listenFields": [
@@ -197,20 +218,20 @@ module.exports = {
             "content": {
               "dataField": "_emailAddress",
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.text"
+                "#userid"
               ]
             },
-            "note": "Read in email address"
+            "note": "Find email address"
           },
           {
             "type": "value",
             "content": {
               "dataField": "password",
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.pw"
+                "#pass"
               ]
             },
-            "note": "Read in password"
+            "note": "Find password"
           }
         ],
         "triggerEvents": [
@@ -218,10 +239,10 @@ module.exports = {
             "type": "elementClickedOn",
             "content": {
               "elementSelectors": [
-                "#sign-in > div.susi-fields-wrapper > fieldset > input.button.button-primary.sign-up-in"
+                "#sgnBt" 
               ]
             },
-            "note": "Clicked on 'Log in' button"
+            "note": "Clicked on 'Sign in' button"
           }
         ]
       },
@@ -230,29 +251,39 @@ module.exports = {
           {
             "type": "value",
             "content": {
-              "dataField": "_username",
+              "dataField": "_firstName",
               "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input:nth-child(2)"
-                ]
+                "#firstname"
+              ]
             },
-            "note": "Read in username"
+            "note": "Read in first name"
+          },
+          {
+            "type": "value",
+            "content": {
+              "dataField": "_lastName",
+              "elementSelectors": [
+                "#lastname"
+              ]
+            },
+            "note": "Read in last name"
           },
           {
             "type": "value",
             "content": {
               "dataField": "_emailAddress",
               "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input:nth-child(5)"
+                "#Email"
               ]
             },
-            "note": "Read in email address"
+            "note": "Read in email"
           },
           {
             "type": "value",
             "content": {
               "dataField": "password",
               "elementSelectors": [
-                "#sign-up > div.susi-fields-wrapper > fieldset > input.pw"
+                "#password"
               ]
             },
             "note": "Read in password"
@@ -263,10 +294,10 @@ module.exports = {
             "type": "elementClickedOn",
             "content": {
               "elementSelectors": [
-                "#submit"
+                "#EMAIL_REG_FORM_SUBMIT"
               ]
             },
-            "note": "Clicked on 'Sign up' button"
+            "note": "Pressed 'Create Account' button"
           }
         ]
         // "successState": {
@@ -279,5 +310,4 @@ module.exports = {
       },
       "recovery": {}
     }
-  };
-  /*********************************************************************************************************/
+  }; 

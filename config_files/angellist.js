@@ -1,7 +1,8 @@
 module.exports = {
-  "serviceName": "cloudflare",
-  "officialName": "Cloudflare",
+  "serviceName": "angellist",
+  "officialName": "AngelList",
   "accountData": [
+    "_firstName+' '+_lastName",
     "_emailAddress",
     "password"
   ],
@@ -11,7 +12,6 @@ module.exports = {
     "maxLength": -1,
     "mustInclude": [
 
-      "specialChar",
       "number"
       
     ],
@@ -21,8 +21,8 @@ module.exports = {
   },
   
   "entrypointConfig": {
-    "rootDomain": "cloudflare.com",
-    "subDomain": "ALL.cloudflare.com",
+    "rootDomain": "angel.co",
+    "subDomain": "NONE.angel.co",
     "entrypoints": [
       
       //login entrypoints
@@ -31,16 +31,26 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/login']"
+            "#root > div.header_nav.unmodified.dir--layouts.layouts.file--header.header._a._jm > div > div > div.s-grid-colSm24 > div.searchAndLinks.u-floatRight.u-borderBox > div > div.s-flexgrid0-colSm.linksContainer.respondToNavbarHeight.u-floatRight > div:nth-child(1) > a.auth.login.u-fontWeight300"
           ]
         },
         "note": "CLicked login from home page"
       },
       {
         "type": "login",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#root > div:nth-child(4) > div > div > div > div > div > div > div.s-vgTop1_5.s-vgLeft2.u-fontSize14.s-vgBottom10 > a"
+          ]
+        },
+        "note": "CLicked login from Sign up page"
+      },
+      {
+        "type": "login",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/login"
+          "startUrl": "https://angel.co/login"
         },
         "note": "Redirects to this page for login"
       },
@@ -51,16 +61,26 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/sign-up']"
+            "#root > div.header_nav.unmodified.dir--layouts.layouts.file--header.header._a._jm > div > div > div.s-grid-colSm24 > div.searchAndLinks.u-floatRight.u-borderBox > div > div.s-flexgrid0-colSm.linksContainer.respondToNavbarHeight.u-floatRight > div:nth-child(1) > a:nth-child(1)"
           ]
         },
-        "note": "CLicked login from home page"
+        "note": "Clicked sign up from home page"
+      },
+      {
+        "type": "signup",
+        "identifierType": "elementClickedOn",
+        "identifier": {
+          "elementSelectors": [
+            "#root > div:nth-child(4) > div > div > div > div > div > div > div.s-vgTop1_5.s-vgLeft2.u-fontSize14.s-vgBottom10 > a"
+          ]
+        },
+        "note": "Clicked sign up from login page"
       },
       {
         "type": "signup",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/sign-up"
+          "startUrl": "https://angel.co/join"
         },
         "note": "Redirects to this page for sign up"
       },
@@ -71,7 +91,7 @@ module.exports = {
         "identifierType": "elementClickedOn",
         "identifier": {
           "elementSelectors": [
-            "a[href='https://dash.cloudflare.com/forgot-password']"
+            "#new_user > div:nth-child(6) > a"
           ]
         },
         "note": "Forgot password button"
@@ -80,7 +100,7 @@ module.exports = {
         "type": "recovery",
         "identifierType": "urlStartWith",
         "identifier": {
-          "startUrl": "https://dash.cloudflare.com/forgot-password"
+          "startUrl": "https://angel.co/password/"
         },
         "note": "Redirects to this page for password recovery"
       },
@@ -88,25 +108,19 @@ module.exports = {
       //signup + login success entrypoints
       {
         "type": "signupSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://angel.co/onboarding/welcome"
         },
-        "note": "Asks for more cusstom questions in the page that starts with the above domain, followed by random numbers"
+        "note": "Goes to this page after successfully making an account to ask you custom questions"
       },
       {
         "type": "loginSuccess",
-        "identifierType": "urlIncludes&elementPresent",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://dash.cloudflare.com/",
-          "elementSelectors": [
-            "div.c_q.c_c"
-          ]
+          "includedString": "https://angel.co/today"
         },
-        "note": "Goes to a url that starts with the above, followed by random numbers"
+        "note": "Redirects to this apge after successful login attempt"
       }
     ]
   },
@@ -121,7 +135,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-email']"
+            "#user_email"
           ],
           "value": "[account:_emailAddress]"
         },
@@ -132,7 +146,7 @@ module.exports = {
         "content": {
           "fetch": true,
           "elementSelectors": [
-            "input[data-testid='login-input-password']"
+            "#user_password"
           ],
           "value": "[account:password]"
         },
@@ -142,11 +156,12 @@ module.exports = {
         "type": "elementClick",
         "content": {
           "elementSelectors": [
-            "button[data-testid='login-submit-button']"
+            "#new_user > div:nth-child(6) > input"
           ]
         },
-        "note": "Click on ______"
+        "note": "Click on login"
       }
+
 
     ]
   },
@@ -172,20 +187,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[name='login-input-email']" // should be the same as in loginConfig
+              "#user_email" // should be the same as in loginConfig
             ]
           },
-          "note": "Login email input field"
+          "note": "_____"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='login-input-password']" // should be the same as in loginConfig
+              "#user_password" // should be the same as in loginConfig
             ]
           },
-          "note": "Login password input field"
+          "note": "_____"
         }
       ],
       "triggerEvents": [
@@ -193,10 +208,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='login-submit-button']" // should be the same as in loginConfig
+              "#new_user > div:nth-child(6) > input" // should be the same as in loginConfig
             ]
           },
-          "note": "Login submit button"
+          "note": "_____"
         }
       ]
     },
@@ -207,20 +222,20 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "input[data-testid='signup-input-email']" // should be the same as in signupConfig
+              "#user_email" // should be the same as in signupConfig
             ]
           },
-          "note": "Email input field"
+          "note": "Sign up form email input field"
         },
         {
           "type": "value",
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "input[data-testid='signup-input-password']" // should be the same as in signupConfig
+              "#user_password" // should be the same as in signupConfig
             ]
           },
-          "note": "Password input field"
+          "note": "Sign up form password input field"
         }
       ],
       "triggerEvents": [
@@ -228,10 +243,10 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "button[data-testid='signup-submit-button']" // should be the same as in signupConfig
+              "#new_user > div.s-vgTop1_5.join-cta > button" // should be the same as in signupConfig
             ]
           },
-          "note": "Create Account button"
+          "note": "Sign up button"
         }
       ]
       // "successState": {

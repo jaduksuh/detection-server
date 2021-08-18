@@ -1,0 +1,271 @@
+{
+  "airtable": {
+    "url": "https://airtable.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "amazon": {
+    "url": "https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&",
+    "elements": ["email", "button"]
+  },
+  "angellist": {
+    "url": "https://angel.co/login",
+    "elements": ["email", "password", "button"]
+  },
+  "apollo": {
+    "url": "https://app.apollo.io/#/login",
+    "elements": ["email", "password", "button"]
+  },
+  "asana": {
+    "url": "https://app.asana.com/-/login",
+    "elements": ["email", "password", "button"]
+  },
+  "atlassian": {
+    "url": "https://id.atlassian.com/login",
+    "elements": ["email", "button"]
+  },
+  "auth0": {
+    "url": "https://auth0.auth0.com/u/login/identifier?state=hKFo2SBEV1FQU3NMUnlRODd5RUo2X29HZ0ZoQWktU3hKTkdxa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIENWNzR5eUJ6SEt5ekhzVkxLSElyeUcwbl8tLXZNLTIyo2NpZNkgYkxSOVQ1YXI2bkZ0RE80ekVyR1hkb3FNQ000aU5aU1Y",
+    "elements": ["email", "button"]
+  },
+  "avodocs": {
+    "url": "https://www.avodocs.com/login",
+    "elements": ["email", "button"]
+  },
+  "bbc": {
+    "url": "https://account.bbc.com/signin",
+    "elements": ["email", "password", "button"]
+  },
+  "bitly": {
+    "url": "https://bitly.com/a/sign_in",
+    "elements": ["email", "password", "button"]
+  },
+  "branch": {
+    "url": "https://dashboard.branch.io/login",
+    "elements": ["email", "password", "button"]
+  },
+  "brex": {
+    "url": "https://accounts.brex.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "calendly": {
+    "url": "https://calendly.com/app/login",
+    "elements": ["email", "button"]
+  },
+  "clerky": {
+    "url": "https://app.clerky.com/",
+    "elements": ["email", "password", "button"]
+  },
+  "clickup": {
+    "url": "https://app.clickup.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "cloudflare": {
+    "url": "https://dash.cloudflare.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "cnbc": {
+    "url": "https://www.cnbc.com/world/?region=world",
+    "elements": ["email", "password", "button"],
+    "startButton": "#GlobalNavigation > div.CNBCGlobalNav-globalNavigation > div > div > div.SignInMenu-signInContainer > div > div > a"
+  },
+  "coinbase": {
+    "url": "https://www.coinbase.com/signin",
+    "elements": ["email", "password", "button"]
+  },
+  "costco": {
+    "url": "https://www.costco.com/LogonForm",
+    "elements": ["email", "password", "button"]
+  },
+  "coursera": {
+    "url": "https://www.coursera.org/?authMode=login",
+    "elements": ["email", "password", "button"]
+  },
+  "crunchbase": {
+    "url": "https://www.crunchbase.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "dailymotion": {
+    "url": "https://www.dailymotion.com/signin",
+    "elements": ["email", "password", "button"]
+  },
+  "deel": {
+    "url": "https://app.letsdeel.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "discord": {
+    "url": "https://discord.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "docusign": {
+    "url": "https://account.docusign.com/username#/username",
+    "elements": ["email", "password", "button"]
+  },
+  "doordash": {
+    "url": "https://identity.doordash.com/auth?client_id=1666519390426295040&intl=en-US&layout=consumer_web&prompt=none&redirect_uri=https%3A%2F%2Fwww.doordash.com%2Fpost-login%2F&response_type=code&scope=%2A&state=%2Fhome%2F%7C%7C1e65c50f-4e92-4fe5-9477-27befff5af67",
+    "elements": ["email", "password", "button"]
+  },
+  "dropbox": {
+    "url": "https://www.dropbox.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "ebay": {
+    "url": "https://signin.ebay.com",
+    "elements": ["email", "button"]
+  },
+  "elastic": {
+    "url": "https://cloud.elastic.co/login?redirectTo=%2Fhome",
+    "elements": ["email", "password", "button"]
+  },
+  "fandom": {
+    "url": "https://www.fandom.com/signin",
+    "elements": ["username", "password", "button"]
+  },
+  "flickr": {
+    "url": "https://identity.flickr.com/login?redir=https%3A%2F%2Fwww.flickr.com%2F",
+    "elements": ["email", "button"]
+  },
+  "github": {
+    "url": "https://github.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "godaddy": {
+    "url": "https://sso.godaddy.com/?realm=idp",
+    "elements": ["email", "password", "button"]
+  },
+  "gusto": {
+    "url": "https://app.gusto.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "hackernews": {
+    "url": "https://news.ycombinator.com/login",
+    "elements": ["username", "password", "button"]
+  },
+  "hackerrank": {
+    "url": "https://www.hackerrank.com/auth/login",
+    "elements": ["email", "password", "button"]
+  },
+  "heroku": {
+    "url": "https://id.heroku.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "imdb": {
+    "url": "https://www.imdb.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.imdb.com%2Fregistration%2Fap-signin-handler%2Fimdb_us&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=imdb_us&openid.mode=checkid_setup&siteState=eyJvcGVuaWQuYXNzb2NfaGFuZGxlIjoiaW1kYl91cyIsInJlZGlyZWN0VG8iOiJodHRwczovL3d3dy5pbWRiLmNvbS8_cmVmXz1sb2dpbiJ9&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&tag=imdbtag_reg-20",
+    "elements": ["email", "password", "button"]
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/accounts/login/",
+    "elements": ["email", "password", "button"]
+  },
+  "keybase": {
+    "url": "https://keybase.io/",
+    "elements": ["email", "password", "button"],
+    "startButton": "#navbar-top > div > div > div > div.col-xs-12.col-sm-6 > table > tbody > tr > td:nth-child(2) > a"
+  },
+  "leetcode": {
+    "url": "https://leetcode.com/accounts/login/",
+    "elements": ["username", "password", "button"]
+  },
+  "linkedin": {
+    "url": "https://www.linkedin.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "miro": {
+    "url": "https://miro.com/login/",
+    "elements": ["email", "password", "button"]
+  },
+  "mixpanel": {
+    "url": "https://mixpanel.com/login/",
+    "elements": ["email", "password", "button"]
+  },
+  "monday": {
+    "url": "https://auth.monday.com/auth/login_monday",
+    "elements": ["email"]
+  },
+  "myspace": {
+    "url": "https://myspace.com/signin",
+    "elements": ["email", "password", "button"]
+  },
+  "postgresql": {
+    "url": "https://www.postgresql.org/account/login/",
+    "elements": ["email", "password", "button"]
+  },
+  "qualtrics": {
+    "url": "https://login.qualtrics.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "quizlet": {
+    "url": "https://quizlet.com/",
+    "elements": ["username", "password", "button"],
+    "startButton": "button[aria-label='Log in']"
+  },
+  "retool": {
+    "url": "https://login.retool.com/auth/login",
+    "elements": ["email", "password", "button"]
+  },
+  "rottentomatoes": {
+    "url": "https://www.rottentomatoes.com/",
+    "elements": ["email", "password", "button"],
+    "startButton": "#masthead-show-login-btn"
+  },
+  "sendgrid": {
+    "url": "https://app.sendgrid.com/login",
+    "elements": ["username", "password", "button"]
+  },
+  "stackoverflow": {
+    "url": "https://stackoverflow.com/users/login",
+    "elements": ["email", "password", "button"]
+  },
+  "stripe": {
+    "url": "https://dashboard.stripe.com/login",
+    "elements": ["email", "password", "button"]
+  },
+  "surveymonkey": {
+    "url": "https://www.surveymonkey.com/user/sign-in",
+    "elements": ["username", "password", "button"]
+  },
+  "tinyurl": {
+    "url": "https://tinyurl.com/app/login",
+    "elements": ["email", "password", "button"]
+  },
+  "triplebyte": {
+    "url": "https://triplebyte.com/users/sign_in#Login",
+    "elements": ["email", "password", "button"]
+  },
+  "twitch": {
+    "url": "https://www.twitch.tv/",
+    "elements": ["username", "password", "button"],
+    "startButton": "#root > div > div.sc-AxjAm.tlQbp > nav > div > div.sc-AxjAm.heIqmc > div.sc-AxjAm.kDfOjx > div > div.sc-AxjAm.bEURDn.anon-user > div:nth-child(1) > button"
+  },
+  "udemy": {
+    "url": "https://www.udemy.com/join/login-popup/?locale=en_US&response_type=html&next=https%3A%2F%2Fwww.udemy.com%2Fjoin%2Flogin",
+    "elements": ["email", "password", "button"]
+  },
+  "walmart": {
+    "url": "https://www.walmart.com/account/login",
+    "elements": ["email", "password", "button"]
+  },
+  "webflow": {
+    "url": "https://webflow.com/dashboard/login",
+    "elements": ["email", "password", "button"]
+  },
+  "webmd": {
+    "url": "https://member.webmd.com/signin",
+    "elements": ["email", "password", "button"]
+  },
+  "wework": {
+    "url": "https://idp.wework.com/login?state=hKFo2SBuazRIOFByX241TTNuQ0Iyaldqc1lpZDZ4ZzdZVkxtSaFupWxvZ2luo3RpZNkgSHhmZDZmMzZMTFpwTU0xWnFmYmE2eFhlVFJSdmFHMkijY2lk2SBzc0lOeVl2WW9CSFNXOHBPY29BRTBmNUt6cmJkNmNtYg&client=ssINyYvYoBHSW8pOcoAE0f5Kzrbd6cmb&protocol=oauth2&audience=wework&redirect_uri=https%3A%2F%2Fmembers.wework.com&scope=openid%20profile%20email&response_type=code&response_mode=query&nonce=T0owbHJETk92bHllS3RtUy5GQnBQVk9xbjI3dWpEbVJKREVjaXBIYXJvTg%3D%3D&code_challenge=EBTr0R0xOVSuEAcYRZshiUGA-8ZFSfl-vtls3NNFsX8&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtcmVhY3QiLCJ2ZXJzaW9uIjoiMS4wLjAifQ%3D%3D",
+    "elements": ["email", "password", "button"]
+  },
+  "wikipedia": {
+    "url": "https://en.wikipedia.org/w/index.php?title=Special:UserLogin",
+    "elements": ["username", "password", "button"]
+  },
+  "wordpress": {
+    "url": "https://wordpress.com/log-in",
+    "elements": ["email", "password", "button"]
+  },
+  "zipcar": {
+    "url": "https://my.zipcar.com/login",
+    "elements": ["email", "password", "button"]
+  }
+}
