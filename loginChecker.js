@@ -17,10 +17,10 @@ let mailTransporter = nodemailer.createTransport({
 
 
 // Testing
-//*
+/*
 (async () => {
   for(let website in websites) {
-    if(website !== "costco") continue;
+    if(website !== "quizlet") continue;
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto(websites[website]["url"]);
@@ -29,7 +29,10 @@ let mailTransporter = nodemailer.createTransport({
     console.log(title, url);
 
     if("startButton" in websites[website]) {
-      await page.click(websites[website]["startButton"]);
+      for (button of websites[website]["startButton"]) {
+        await page.click(button);
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
@@ -38,30 +41,37 @@ let mailTransporter = nodemailer.createTransport({
     
     const findSelector = (element) => {
       let webfile = require(`./config_files/${website}.js`);
+      let cssElements = [];
       switch (element) {
         case "email":
           for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
             if (field["content"]["dataField"] === "_emailAddress") {
-              return field["content"]["elementSelectors"][0];
+              cssElements = cssElements.concat(field["content"]["elementSelectors"]);
             }
           }
+          return cssElements;
           break;
         case "password":
           for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
             if (field["content"]["dataField"] === "password") {
-              return field["content"]["elementSelectors"][0];
+              cssElements = cssElements.concat(field["content"]["elementSelectors"]);
             }
           }
+          return cssElements;
           break;
         case "username":
           for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
             if (field["content"]["dataField"] === "_username") {
-              return field["content"]["elementSelectors"][0];
+              cssElements = cssElements.concat(field["content"]["elementSelectors"]);
             }
           }
+          return cssElements;
           break;
         case "button":
-          return webfile["manualActionConfig"]["login"]["triggerEvents"][0]["content"]["elementSelectors"][0];
+          for (let field of webfile["manualActionConfig"]["login"]["triggerEvents"]) {
+            cssElements = cssElements.concat(field["content"]["elementSelectors"]);
+          }
+          return cssElements;
           break;
         default:
           throw new Error("Unidentified element type!!");
@@ -69,11 +79,19 @@ let mailTransporter = nodemailer.createTransport({
     }
 
     for(let element of websites[website]["elements"]) {
-      let targetElement = findSelector(element); console.log(targetElement);
-      const grabElement = await page.evaluate((targetElement) => {
-        return document.querySelector(targetElement);      
-      }, targetElement);
-      if(grabElement !== null) console.log("Existing Element!");
+      let targetElements = findSelector(element); console.log(targetElements);
+      let elementExists = false;
+      
+      for (targetElement of targetElements) {
+        const grabElement = await page.evaluate((targetElement) => {
+          return document.querySelector(targetElement);      
+        }, targetElement);
+        if(grabElement !== null) {
+          elementExists = true; break;
+        }
+      }
+
+      if(elementExists) console.log("Existing Element!");
       else {
         console.log("Non-existent element!");
         let mailDetails = {
@@ -92,14 +110,14 @@ let mailTransporter = nodemailer.createTransport({
         break;
       }
     }
-    await browser.close();
+    //await browser.close();
   }
 })();
 //*/
 
 // Real Application
 
-/*
+//*
 cron.schedule("* * * *", () => {
   (async () => {
     for(let website in websites) {
@@ -109,54 +127,71 @@ cron.schedule("* * * *", () => {
       const title = await page.title();
       const url = await page.url();
       console.log(title, url);
-      
+
       if("startButton" in websites[website]) {
-        await page.click(websites[website]["startButton"]);
+        for (button of websites[website]["startButton"]) {
+          await page.click(button);
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
-      
+
       // wait 2.5 seconds for the page to fully load
       await new Promise(resolve => setTimeout(resolve, 2500));
-
+      
       const findSelector = (element) => {
         let webfile = require(`./config_files/${website}.js`);
+        let cssElements = [];
         switch (element) {
           case "email":
             for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
               if (field["content"]["dataField"] === "_emailAddress") {
-                return field["content"]["elementSelectors"][0];
+                cssElements = cssElements.concat(field["content"]["elementSelectors"]);
               }
             }
+            return cssElements;
             break;
           case "password":
             for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
               if (field["content"]["dataField"] === "password") {
-                return field["content"]["elementSelectors"][0];
+                cssElements = cssElements.concat(field["content"]["elementSelectors"]);
               }
             }
+            return cssElements;
             break;
           case "username":
             for (let field of webfile["manualActionConfig"]["login"]["listenFields"]) {
               if (field["content"]["dataField"] === "_username") {
-                return field["content"]["elementSelectors"][0];
+                cssElements = cssElements.concat(field["content"]["elementSelectors"]);
               }
             }
+            return cssElements;
             break;
           case "button":
-            return webfile["manualActionConfig"]["login"]["triggerEvents"][0]["content"]["elementSelectors"][0];
+            for (let field of webfile["manualActionConfig"]["login"]["triggerEvents"]) {
+              cssElements = cssElements.concat(field["content"]["elementSelectors"]);
+            }
+            return cssElements;
             break;
           default:
             throw new Error("Unidentified element type!!");
         }
       }
 
-      
       for(let element of websites[website]["elements"]) {
-        let targetElement = findSelector(element); console.log(targetElement);
-        const grabElement = await page.evaluate((targetElement) => {
-          return document.querySelector(targetElement);      
-        }, targetElement);
-        if(grabElement !== null) console.log("Existing Element!");
+        let targetElements = findSelector(element); console.log(targetElements);
+        let elementExists = false;
+        
+        for (targetElement of targetElements) {
+          const grabElement = await page.evaluate((targetElement) => {
+            return document.querySelector(targetElement);      
+          }, targetElement);
+          if(grabElement !== null) {
+            elementExists = true; break;
+          }
+        }
+
+        if(elementExists) console.log("Existing Element!");
         else {
           console.log("Non-existent element!");
           let mailDetails = {
@@ -175,7 +210,7 @@ cron.schedule("* * * *", () => {
           break;
         }
       }
-      await browser.close();
+      //await browser.close();
     }
   })();
 });

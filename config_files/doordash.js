@@ -244,7 +244,7 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "#sign-up-submit-button > div > span > div" // should be the same as in signupConfig
+              "#sign-up-submit-button" // should be the same as in signupConfig
             ]
           },
           "note": "Sign up form submit button"

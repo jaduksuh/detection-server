@@ -19,9 +19,9 @@ module.exports = {
     "entrypoints": [ 
       {
         "type": "login",
-        "identifierType": "urlStartWith",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "startUrl": "https://auth0.auth0.com/u/login"
+          "includedString": "https://auth0.auth0.com/u/login"
         },
         "note": "Refreshed upon login page"
       },
@@ -37,9 +37,9 @@ module.exports = {
       },
       {
         "type": "signup",
-        "identifierType": "urlStartWith",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "startUrl": "https://auth0.com/signup"
+          "includedString": "https://auth0.com/sign-up"
         },
         "note": "Refreshed upon signup page"
       },
@@ -57,9 +57,9 @@ module.exports = {
       },
       {
         "type": "recovery",
-        "identifierType": "urlStartWith",
+        "identifierType": "urlIncludes",
         "identifier": {
-          "startUrl": "https://auth0.auth0.com/u/reset-password"
+          "includedString": "https://auth0.auth0.com/u/reset-password"
         },
         "note": "Refreshed upon recovery page"
       },
@@ -256,7 +256,7 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "#signup-app > div > div > form > div:nth-child(1) > button"
+              "#database"
             ]
           },
           "note": "Clicked on sign up button"

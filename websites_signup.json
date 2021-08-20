@@ -8,7 +8,219 @@
     "elements": ["email", "password", "button"]
   },
   "apollo": {
-    "url": "",
+    "url": "https://www.apollo.io/signup/",
+    "elements": ["email", "button"]
+  },
+  "atlassian": {
+    "url": "https://id.atlassian.com/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "auth0": {
+    "url": "https://auth0.com/sign-up",
+    "elements": ["email", "password", "button"]
+  },
+  "bbc": {
+    "url": "https://account.bbc.com/register/details?ab=o18&action=register&clientId=Account&context=homepage&isCasso=false&nonce=goc16bBH-RAJoAhnoxSpxpsqgH6SwBhTWx_Q&ptrt=https%3A%2F%2Fwww.bbc.com%2F&realm=%2F&redirectUri=https%3A%2F%2Fsession.bbc.com%2Fsession%2Fcallback%3Frealm%3D%2F&service=IdSignInService&userOrigin=HOMEPAGE_GNL&dateOfBirthDay=01&dateOfBirthMonth=11&dateOfBirthYear=1998",
+    "elements": ["email", "password", "button"]
+  },
+  "bitly": {
+    "url": "https://bitly.com/a/sign_up",
+    "elements": ["username", "email", "password", "button"]
+  },
+  "branch": {
+    "url": "https://dashboard.branch.io/",
+    "elements": ["email", "password", "button"]
+  },
+  "clerky": {
+    "url": "https://app.clerky.com/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "clickup": {
+    "url": "https://app.clickup.com/signup?plan=trial",
+    "elements": ["email", "password", "button"]
+  },
+  "cnbc": {
+    "url": "https://www.cnbc.com/world/",
+    "elements": ["email", "password", "button"],
+    "startButton": ["#GlobalNavigation > div.CNBCGlobalNav-globalNavigation > div > div > div.SignInMenu-signInContainer > div > div > a", "#BrandPageWrapper > div.Modal-modalBackground > div > div > div > div.AuthForms-container > div.AuthForms-header > div.AuthForms-toggleCta > button"]
+  },
+  "coinbase": {
+    "url": "https://www.coinbase.com/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "costco": {
+    "url": "https://www.costco.com/RegisterView",
+    "elements": ["email", "password", "button"]
+  },
+  "coursera": {
+    "url": "https://www.coursera.org/?authMode=signup",
+    "elements": ["email", "password", "button"]
+  },
+  "crunchbase": {
+    "url": "https://www.crunchbase.com/register",
+    "elements": ["email", "password", "button"]
+  },
+  "dailymotion": {
+    "url": "https://www.dailymotion.com/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "discord": {
+    "url": "https://discord.com/register",
+    "elements": ["email", "password", "button"]
+  },
+  "docusign": {
+    "url": "https://go.docusign.com/o/trial/",
+    "elements": ["email", "button"]
+  },
+  "doordash": {
+    "url": "https://identity.doordash.com/auth/user/signup?client_id=1644751820221630860&intl=en-US&layout=consumer_web&prompt=none&redirect_uri=https%3A%2F%2Fwww.doordash.com%2Fhome%2Fen-US&response_type=code&scope=%2A&state=none",
+    "elements": ["email", "password", "button"]
+  },
+  "dropbox": {
+    "url": "https://www.dropbox.com/register",
+    "elements": ["email", "password", "button"]
+  },
+  "elastic": {
+    "url": "https://cloud.elastic.co/registration?baymax=rtp&elektra=home&storm=hero&rogue=elastic-agent",
+    "elements": ["email", "password", "button"]
+  },
+  "fandom": {
+    "url": "https://www.fandom.com/register",
+    "elements": ["username", "password", "button"]
+  },
+  "github": {
+    "url": "https://github.com/signup",
+    "elements": ["email"]
+  },
+  "godaddy": {
+    "url": "https://sso.godaddy.com/account/create",
+    "elements": ["email", "password", "button"],
+    "startButton": ["#sign-up-email"]
+  },
+  "gusto": {
+    "url": "https://gusto.com/invite/company",
+    "elements": ["email", "password", "button"],
+    "startButton": [
+      "#survey-signup-modal-on-invite > div > div > div > div > div > div.survey-manager > div > div.lp-survey-step > div > div.form-group.padding-top-20px > div > div:nth-child(1) > label",
+      "#survey-signup-modal-on-invite > div > div > div > div > div > div.survey-manager > div > div.lp-survey-step > div > div.form-group.padding-top-20px > div > div:nth-child(1) > label",
+      "#survey-signup-modal-on-invite > div > div > div > div > div > div.survey-manager > div > div.lp-survey-step > div > div.form-group.padding-top-20px > div > div:nth-child(1) > label",
+      "#survey-signup-modal-on-invite > div > div > div > div > div > div.survey-manager > div > div.lp-survey-step > div > div.form-group.padding-top-20px > div > div:nth-child(1) > label",
+      "#survey-signup-modal-on-invite > div > div > div > div > div > div.survey-manager > div > div.lp-survey-step > div > div.form-group.padding-top-20px > div > div:nth-child(1) > label"
+    ]
+  },
+  "hackernews": {
+    "url": "https://news.ycombinator.com/login",
+    "elements": ["username", "password", "button"]
+  },
+  "hackerrank": {
+    "url": "https://www.hackerrank.com/auth/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "heroku": {
+    "url": "https://signup.heroku.com/login",
+    "elements": ["email", "button"]
+  },
+  "imdb": {
+    "url": "https://www.imdb.com/ap/register?openid.return_to=https%3A%2F%2Fwww.imdb.com%2Fregistration%2Fap-signin-handler%2Fimdb_us&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=imdb_us&openid.mode=checkid_setup&siteState=eyJvcGVuaWQuYXNzb2NfaGFuZGxlIjoiaW1kYl91cyIsInJlZGlyZWN0VG8iOiJodHRwczovL3d3dy5pbWRiLmNvbS8_cmVmXz1sb2dpbiJ9&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&tag=imdbtag_reg-20",
+    "elements": ["email", "password", "button"]
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/accounts/emailsignup/",
+    "elements": ["email", "password", "button"]
+  },
+  "keybase": {
+    "url": "https://keybase.io/",
+    "elements": ["email", "password", "button"],
+    "startButton": [
+      "#navbar-top > div > div > div > div.col-xs-12.col-sm-6 > table > tbody > tr > td:nth-child(2) > a",
+      "#btn-signup"
+    ]
+  },
+  "leetcode": {
+    "url": "https://leetcode.com/accounts/signup/",
+    "elements": ["username", "password", "button"]
+  },
+  "linkedin": {
+    "url": "https://www.linkedin.com/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "miro": {
+    "url": "https://miro.com/signup/",
+    "elements": ["email", "password", "button"]
+  },
+  "monday": {
+    "url": "https://auth.monday.com/users/sign_up_new?source=web_main&origin=hp_fullbg_page_header#soft_signup_from_step",
+    "elements": ["email", "button"]
+  },
+  "myspace": {
+    "url": "https://myspace.com/signup",
+    "elements": ["email", "password", "button"],
+    "startButton": ["#signupTypesDialog > section > button.emaillogin.massive"]
+  },
+  "qualtrics": {
+    "url": "https://www.qualtrics.com/au/free-account/",
+    "elements": ["email", "button"]
+  },
+  "quizlet": {
+    "url": "https://quizlet.com/",
+    "elements": ["username", "password", "button"],
+    "startButton": ["#TopNavigationReactTarget > header > div > div.TopNavigation-contentRight > div.SiteNavLoginSection > button.AssemblyButtonBase.AssemblyPrimaryButton--upgrade.inverted.AssemblyButtonBase--small.AssemblyButtonBase--padding"]
+  },
+  "retool": {
+    "url": "https://login.retool.com/auth/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "rottentomatoes": {
+    "url": "https://www.rottentomatoes.com/",
+    "elements": ["email", "password", "button"],
+    "startButton": ["#masthead-show-registration-btn"]
+  },
+  "sendgrid": {
+    "url": "https://signup.sendgrid.com",
+    "elements": ["username", "password", "button"]
+  },
+  "stackoverflow": {
+    "url": "https://stackoverflow.com/users/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "stripe": {
+    "url": "https://dashboard.stripe.com/register",
+    "elements": ["email", "password", "button"]
+  },
+  "surveymonkey": {
+    "url": "https://www.surveymonkey.com/user/sign-up/",
+    "elements": ["email", "password", "button"]
+  },
+  "tinyurl": {
+    "url": "https://tinyurl.com/app/register",
+    "elements": ["email", "password", "button"]
+  },
+  "triplebyte": {
+    "url": "https://triplebyte.com/users/sign_up",
+    "elements": ["email", "password", "button"]
+  },
+  "udemy": {
+    "url": "https://www.udemy.com/join/signup-popup/",
+    "elements": ["email", "password", "button"]
+  },
+  "walmart": {
+    "url": "https://www.walmart.com/account/signup",
+    "elements": ["email", "password", "button"]
+  },
+  "webmd": {
+    "url": "https://member.webmd.com/register",
+    "elements": ["email", "password", "button"]
+  },
+  "wikipedia": {
+    "url": "https://en.wikipedia.org/w/index.php?title=Special:CreateAccount",
+    "elements": ["email", "password", "button"]
+  },
+  "wordpress": {
+    "url": "https://wordpress.com/start/user",
+    "elements": ["email", "password", "button"]
+  },
+  "zipcar": {
+    "url": "https://wordpress.com/start/user",
     "elements": ["email", "password", "button"]
   }
 }

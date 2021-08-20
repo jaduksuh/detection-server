@@ -246,7 +246,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "#main > div.Flex-l69ttv-0.Signup__SignupFormContainer-sc-1nmo5j5-1.heLomK > div > form > div.Flex-l69ttv-0.Input__Container-sc-5d3t3r-5.jAQFzs.Fields__StyledInput-sc-1396sjh-6.jyZDPI > input",
+              "input[name='email']",
               "body > div:nth-child(17) > div > div > div > div.Flex-l69ttv-0.ModalBody-sc-1hv5vpe-0.jXPbPf > div > div > form > div.Flex-l69ttv-0.Input__Container-sc-5d3t3r-5.jAQFzs.Fields__StyledInput-sc-1396sjh-6.jyZDPI > input"
             ]
           },
@@ -257,7 +257,7 @@ module.exports = {
           "content": {
             "dataField": "password",
             "elementSelectors": [
-              "#main > div.Flex-l69ttv-0.Signup__SignupFormContainer-sc-1nmo5j5-1.heLomK > div > form > div.Flex-l69ttv-0.Fields__StyledPasswordFieldContainer-sc-1396sjh-0.eogPyZ > div > div.Flex-l69ttv-0.Input__Container-sc-5d3t3r-5.jAQFzs > input",
+              "input[name='password']",
               "body > div:nth-child(17) > div > div > div > div.Flex-l69ttv-0.ModalBody-sc-1hv5vpe-0.jXPbPf > div > div > form > div.Flex-l69ttv-0.Fields__StyledPasswordFieldContainer-sc-1396sjh-0.eogPyZ > div > div.Flex-l69ttv-0.Input__Container-sc-5d3t3r-5.jAQFzs > input"
             ]
           },
@@ -269,6 +269,7 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
+              "button[data-element-handle='signup-submit-button']",
               "#main > div.Flex-l69ttv-0.Signup__SignupFormContainer-sc-1nmo5j5-1.heLomK > div > form > button",
               "body > div:nth-child(17) > div > div > div > div.Flex-l69ttv-0.ModalBody-sc-1hv5vpe-0.jXPbPf > div > div > form > button"
             ]

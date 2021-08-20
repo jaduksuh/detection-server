@@ -233,8 +233,7 @@ module.exports = {
           "content": {
             "dataField": "_emailAddress",
             "elementSelectors": [
-              "#email-or-phone",
-              "input[name='email-or-phone']"
+              "#email-address"
             ]
           },
           "note": "Read in email address"

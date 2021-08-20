@@ -12,19 +12,23 @@ Type 4: Other extra issues
 
 angellist: ip blocks if too many login requests are fired in a rather short period of time
 
-doordash: Like angellist, the website apparently seems to ip block bots.
+cloudflare: seems to blocks bots
+
+doordash: Like angellist, the website apparently seems to ip block bots. (ip 밴은 하는데, 이게 로그인이랑 사인업 자체를 막는 것이지 사이트가 열리긴 한다. 그래서 체크는 가능할 듯?)
 
 ebay: Like above, ebay seems to block bots as well
 
-
-
-
-
-
-<Loading problems>
-
-costco: For some reason, takes too long to load page no matter what
-
 <captcha>
 
-zipcar: Requires captcha when accessing login page
+zipcar: Requires captcha when accessing login or signup page
+
+
+
+
+<partially ready>
+asana, avodocs, brex, calendly, deel, flickr, mixpanel, postgresql, webflow, wework
+
+
+<website change>
+twitch: MAJOR change on website, so major update on config file seems inevitable
+ 
