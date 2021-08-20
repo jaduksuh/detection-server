@@ -218,9 +218,5 @@
   "wordpress": {
     "url": "https://wordpress.com/start/user",
     "elements": ["email", "password", "button"]
-  },
-  "zipcar": {
-    "url": "https://wordpress.com/start/user",
-    "elements": ["email", "password", "button"]
   }
 }
