@@ -1,21 +1,20 @@
-const puppeteer = require('puppeteer');
-const cron = require('node-cron');
-const fs = require('fs');
-//const moment = require('moment');
-const nodemailer = require('nodemailer');
+function loginCheck() {
+  const puppeteer = require('puppeteer');
+  const fs = require('fs');
+  //const moment = require('moment');
+  const nodemailer = require('nodemailer');
 
-let rawjson = fs.readFileSync('./websites_login.json');
-let websites = JSON.parse(rawjson);
+  let rawjson = fs.readFileSync('./websites_login.json');
+  let websites = JSON.parse(rawjson);
 
-let mailTransporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'oprah.plusidentity@gmail.com',
-    pass: 'oprahPiTest*'
-  }
-});
+  let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'oprah.plusidentity@gmail.com',
+      pass: 'oprahPiTest*'
+    }
+  });
 
-cron.schedule('0,10,20,30,40,50 * * * *', () => {
   (async () => {
     for(let website in websites) {
       const browser = await puppeteer.launch({ 
@@ -132,4 +131,6 @@ cron.schedule('0,10,20,30,40,50 * * * *', () => {
       await browser.close();
     }
   })();
-});
+}
+
+module.exports.loginCheck = loginCheck;
