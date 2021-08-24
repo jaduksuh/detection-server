@@ -115,7 +115,7 @@ function signupCheck() {
           }
         }
       }
-      catch {
+      catch (e) {
         console.log(e);
         let mailDetails = {
           from: 'oprah.plusidentity@gmail.com',
