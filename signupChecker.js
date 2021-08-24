@@ -18,7 +18,10 @@ function signupCheck() {
     for(let website in websites) {
       const browser = await puppeteer.launch({ 
         headless: false,
-        args: ['--no-sandbox']
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox'
+        ]
       });
       const page = await browser.newPage();
       await page.setDefaultNavigationTimeout(0);
