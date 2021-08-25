@@ -3,7 +3,7 @@ const cron = require('node-cron');
 const loginChecker = require('./loginChecker');
 const signupChecker = require('./signupChecker');
 
-cron.schedule('0,20,40 * * * *', () => {
+cron.schedule('* * * *', () => {
   loginChecker.loginCheck();
 	signupChecker.signupCheck();
 });
