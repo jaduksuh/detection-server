@@ -1,7 +1,6 @@
 function loginCheck() {
   const puppeteer = require('puppeteer');
   const fs = require('fs');
-  //const moment = require('moment');
   const nodemailer = require('nodemailer');
 
   let rawjson = fs.readFileSync('./websites_login.json');

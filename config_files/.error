@@ -1,34 +1,11 @@
-<Issues>
-Type 3: Websites that only work with elementClickedOn for login entrypoitns
+<Led to Korean website>: quizlet, twitch
 
-quizlet: The target DOM elements appear only when clicked on 'login' button on main page. --> Failed because the bot was constantly redirected to the Korean website.
+<ip block>: angellist, cloudflare, doordash, ebay
 
-twitch: The target DOM elements appear only when clicked on 'login' button on main page. --> Failed because the bot was constantly redirected to the Korean website.
+<captcha>: zipcar
 
+<partially ready>: asana, avodocs, brex, calendly, deel, flickr, mixpanel, postgresql, webflow, wework
 
-Type 4: Other extra issues
-
-<ip block>
-
-angellist: ip blocks if too many login requests are fired in a rather short period of time
-
-cloudflare: seems to blocks bots
-
-doordash: Like angellist, the website apparently seems to ip block bots. (ip 밴은 하는데, 이게 로그인이랑 사인업 자체를 막는 것이지 사이트가 열리긴 한다. 그래서 체크는 가능할 듯?)
-
-ebay: Like above, ebay seems to block bots as well
-
-<captcha>
-
-zipcar: Requires captcha when accessing login or signup page
-
-
-
-
-<partially ready>
-asana, avodocs, brex, calendly, deel, flickr, mixpanel, postgresql, webflow, wework
-
-
-<website change>
-twitch: MAJOR change on website, so major update on config file seems inevitable
- 
+ <Other Issues>
+ auth0: When headless = false, the browser opens up a page where email, password, and button are present.
+ When headless = true, the browser opens up a page where only email and button are present.

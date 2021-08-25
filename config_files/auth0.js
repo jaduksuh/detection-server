@@ -39,7 +39,7 @@ module.exports = {
         "type": "signup",
         "identifierType": "urlIncludes",
         "identifier": {
-          "includedString": "https://auth0.com/sign-up"
+          "includedString": "https://auth0.com/signup"
         },
         "note": "Refreshed upon signup page"
       },
@@ -256,7 +256,7 @@ module.exports = {
           "type": "elementClickedOn",
           "content": {
             "elementSelectors": [
-              "#database"
+              "#signup-app > div > div > form > div:nth-child(1) > button"
             ]
           },
           "note": "Clicked on sign up button"

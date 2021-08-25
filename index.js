@@ -2,10 +2,17 @@ const express = require('express');
 const cron = require('node-cron');
 const loginChecker = require('./loginChecker');
 const signupChecker = require('./signupChecker');
+let checkType = 0;
+
 
 cron.schedule('0 * * * *', () => {
-  loginChecker.loginCheck();
-	signupChecker.signupCheck();
+  if(checkType % 2 === 0) {
+		loginChecker.loginCheck();
+		checkType++;
+	} else {
+		signupChecker.signupCheck();
+		checkType--;	
+	}
 });
 
 const app = express();
