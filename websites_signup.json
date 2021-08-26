@@ -15,10 +15,6 @@
     "url": "https://id.atlassian.com/signup",
     "elements": ["email", "password", "button"]
   },
-  "auth0": {
-    "url": "https://auth0.com/signup",
-    "elements": ["email", "password", "button"]
-  },
   "bbc": {
     "url": "https://account.bbc.com/register/details?ab=o18&action=register&clientId=Account&context=homepage&isCasso=false&nonce=goc16bBH-RAJoAhnoxSpxpsqgH6SwBhTWx_Q&ptrt=https%3A%2F%2Fwww.bbc.com%2F&realm=%2F&redirectUri=https%3A%2F%2Fsession.bbc.com%2Fsession%2Fcallback%3Frealm%3D%2F&service=IdSignInService&userOrigin=HOMEPAGE_GNL&dateOfBirthDay=01&dateOfBirthMonth=11&dateOfBirthYear=1998",
     "elements": ["email", "password", "button"]

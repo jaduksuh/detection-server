@@ -1,3 +1,13 @@
+/*
+* Program Author: Jaduk Suh, 서재덕
+* Program name: Plusidentity detection-server
+* File name: index.js
+* 
+* All contents of the program are owned by Plusidentity
+*/
+
+
+
 const express = require('express');
 const cron = require('node-cron');
 const loginChecker = require('./loginChecker');

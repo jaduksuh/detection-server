@@ -1,3 +1,13 @@
+/*
+* Program Author: Jaduk Suh, 서재덕
+* Program name: Plusidentity detection-server
+* File name: signupChecker.js
+* 
+* All contents of the program are owned by Plusidentity
+*/
+
+
+
 function signupCheck() {
   const puppeteer = require('puppeteer');
   const fs = require('fs');
@@ -15,19 +25,16 @@ function signupCheck() {
   });
 
   (async () => {
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(0);
     for(let website in websites) {
-      const browser = await puppeteer.launch({ 
-        headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox'
-        ]
-      });
-      const page = await browser.newPage();
-      await page.setDefaultNavigationTimeout(0);
-
       try {
         await page.goto(websites[website]["url"]);
+
+        // wait 4 seconds for the page to fully load
+        await new Promise(resolve => setTimeout(resolve, 4000));
+        
         const title = await page.title();
         const url = await page.url();
         console.log(title, url);
@@ -39,9 +46,6 @@ function signupCheck() {
           }
           await new Promise(resolve => setTimeout(resolve, 1000));
         }
-
-        // wait 2.5 seconds for the page to fully load
-        await new Promise(resolve => setTimeout(resolve, 2500));
         
         const findSelector = (element) => {
           let webfile = require(`./config_files/${website}.js`);
@@ -131,9 +135,8 @@ function signupCheck() {
           }
         });
       }
-      
-      await browser.close();
     }
+    await browser.close();
   })();
 }
 
